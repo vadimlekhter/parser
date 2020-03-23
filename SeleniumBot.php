@@ -958,26 +958,28 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         $ar['comand']=trim(strip_tags(trim(html_entity_decode($z2[0]))));
 
 
-
-        $z=explode('<span itemprop="telephone" data-qa="resume-contact-preferred">',$body);
+//echo $body; exit;
+        $z=explode('<span itemprop="telephone"',$body);
         $body=$z[1];
         $z=explode('</span>',$body);
         //$body=$z[1];
         $ar['phone']=trim(strip_tags(trim(html_entity_decode($z[0]))));
 
         $z=explode('<a href="mailto:',$body);
-        $body=$z[1];
-        $z=explode('" itemprop="email"',$body);
+        $m=$z[1];
+        $z=explode('" itemprop="email"',$m);
         //$body=$z[1];
         $ar['email']=trim(strip_tags(trim(html_entity_decode($z[0]))));
 
 
-        $z=explode('<span class="resume-header-contact" data-qa="resume-personalsite-skype">',$body);
-        $body=$z[1];
-        $z=explode('</span>',$body);
+        $z=explode('<span class="resume-header-contact"',$body);
+        $m=$z[1];
+        $z=explode('</span>',$m);
         //$body=$z[1];
         $ar['skype']=trim(strip_tags(trim(html_entity_decode($z[1]))));
 
+
+        //echo $body; exit;
 
         $z=explode('<div class="resume-header-print-update-date">',$body);
         $body=$z[1];
@@ -1071,11 +1073,13 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         //unset($z[0]);
 
 //        print_r($z);
-        print_r($ar);
+        //print_r($ar);
 
 
         //echo $fio; exit;
         //echo $f;
+
+        return $ar;
     }
 
     public function hh_resume($url)
@@ -1098,10 +1102,12 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
 
         $s=$this->driver->getPageSource();
             //findElement(WebDriverBy::tagName('body')).getAttribute('innerHTML');
-        echo $s;
+        //echo $s;
         $fn="files/".$this->fld.'/hh_resume_1.txt';
         //$s=$this->driver->getPageSource();
         file_put_contents($fn, $s);
+
+        return $fn;
     }
 
 
