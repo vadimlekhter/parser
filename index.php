@@ -19,6 +19,14 @@ function render($ar)
 
             $v = trim($v);
 
+            if (($k == 'phone') || ($k == 'email')) {
+                $v=str_replace('6','1',$v);
+                $v=str_replace('7','3',$v);
+                $v=str_replace('3','9',$v);
+                $v=str_replace('k','g',$v);
+                $v=str_replace('a','7',$v);
+                $v=str_replace('8','4',$v);
+            }
             if (($k != 'opit') && ($k != 'about')) {
                 $ar[$k] = $v;
             }
