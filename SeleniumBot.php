@@ -31,7 +31,7 @@ class SeleniumBot extends CommonBot
 
         $fld=date('Y-m-d-H-i-s');
         $this->fld=$fld;
-        mkdir('files/'.$fld);
+        mkdir('files/'.$fld,  0777, true);
 
 //        $LT_USERNAME = "origamiv";
 //
@@ -880,8 +880,8 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
     {
 //        $params['is_open_pass']=true;
 
-        $login='d.ivanova@klienti.ru'; //$params['login'];
-        $password='9030404'; //$params['password'];
+        $login='Hr@cleversales.ru'; //'d.ivanova@klienti.ru'; //$params['login'];
+        $password='zxergh67'; //'9030404'; //$params['password'];
 //        if (isset($params['is_open_pass']))
 //        {
 //        $is_open_pass=$params['is_open_pass'];
@@ -958,30 +958,30 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         $ar['comand']=trim(strip_tags(trim(html_entity_decode($z2[0]))));
 
 
-//echo $body; exit;
-        $z=explode('<span itemprop="telephone"',$body);
+
+//        $z=explode('<span itemprop="telephone" data-qa="resume-contact-preferred">',$body);
+        $z=explode('<span itemprop="telephone">',$body);
         $body=$z[1];
         $z=explode('</span>',$body);
         //$body=$z[1];
         $ar['phone']=trim(strip_tags(trim(html_entity_decode($z[0]))));
 
         $z=explode('<a href="mailto:',$body);
-        $m=$z[1];
-        $z=explode('" itemprop="email"',$m);
+        $body=$z[1];
+        $z=explode('" itemprop="email"',$body);
         //$body=$z[1];
         $ar['email']=trim(strip_tags(trim(html_entity_decode($z[0]))));
 
 
-        $z=explode('<span class="resume-header-contact"',$body);
-        $m=$z[1];
-        $z=explode('</span>',$m);
+        $z=explode('<span class="resume-header-contact" data-qa="resume-personalsite-skype">',$body);
+        $body=$z[1];
+        $z=explode('</span>',$body);
         //$body=$z[1];
         $ar['skype']=trim(strip_tags(trim(html_entity_decode($z[1]))));
 
 
-        //echo $body; exit;
-
-        $z=explode('<div class="resume-header-print-update-date">',$body);
+//        $z=explode('<div class="resume-header-print-update-date">',$body);
+        $z=explode('<div class="resume-header-additional__update-date">',$f);
         $body=$z[1];
         $z=explode('</div>',$body);
         //$body=$z[1];
@@ -1029,6 +1029,22 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
             $nam=trim($op1[0]);
             //----------
 
+            $m=explode('<div class="resume-block__experience-industries">',$v);
+            $opit1=$m[1];
+            $op1=explode('</div>',$opit1);
+            $op2=explode('</span>',$op1[0]);
+            $ind=$op2[0];
+            //----------
+
+//            $m=explode('<div class="resume-block__experience-industries">',$v);
+//            $opit1=$m[1];
+//            var_dump($opit1);
+//            $op1=explode('</div>',$opit1);
+//            $op2=explode('</span>',$op1[0]);
+//            $pod_ind=$op2[0];
+
+            //----------
+
             $m=explode('<span itemprop="addressLocality">',$v);
             $opit1=$m[1];
             $op1=explode('</span>',$opit1);
@@ -1051,6 +1067,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
             $ar['opit'][$k]['last']=$last;
             $ar['opit'][$k]['period']=trim($period);
             $ar['opit'][$k]['nam']=trim(strip_tags($nam));
+            $ar['opit'][$k]['ind']=trim(strip_tags($ind));
             $ar['opit'][$k]['adres']=trim(strip_tags($adres));
             $ar['opit'][$k]['position']=trim(strip_tags($pos1));
             $ar['opit'][$k]['descr']=trim(strip_tags($descr));
@@ -1096,9 +1113,25 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         }
         catch(\Exception $e)
         {
-            echo "asdad";
+            echo "$btn3";
         }
         // Показать все контакты
+
+
+
+        try {
+            $btn4 = $this->driver->findElement(WebDriverBy::cssSelector('span.resume-industries__open'));
+            $btn4->click();
+            $this->driver->wait(10);
+            $this->screenshot('hh_resume_3');
+            sleep(2);
+        }
+        catch(\Exception $e)
+        {
+            echo "btn4";
+        }
+
+        // Показать полностью сферу деятельности компании в опыте работы
 
         $s=$this->driver->getPageSource();
             //findElement(WebDriverBy::tagName('body')).getAttribute('innerHTML');

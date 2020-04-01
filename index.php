@@ -19,14 +19,14 @@ function render($ar)
 
             $v = trim($v);
 
-            if (($k == 'phone') || ($k == 'email')) {
-                $v=str_replace('6','1',$v);
-                $v=str_replace('7','3',$v);
-                $v=str_replace('3','9',$v);
-                $v=str_replace('k','g',$v);
-                $v=str_replace('a','7',$v);
-                $v=str_replace('8','4',$v);
-            }
+//            if (($k == 'phone') || ($k == 'email')) {
+//                $v=str_replace('6','1',$v);
+//                $v=str_replace('7','3',$v);
+//                $v=str_replace('3','9',$v);
+//                $v=str_replace('k','g',$v);
+//                $v=str_replace('a','7',$v);
+//                $v=str_replace('8','4',$v);
+//            }
             if (($k != 'opit') && ($k != 'about')) {
                 $ar[$k] = $v;
             }
@@ -61,6 +61,7 @@ function render($ar)
         echo "<td>";
         echo "<b>".$item['nam']."</b><br>";
         echo $item['adres']."<br>";
+        echo $item['ind']."<br>";
         echo $item['position']."<br>";
         echo $item['descr']."<br>";
         echo "</td></tr>";
@@ -88,9 +89,9 @@ if (isset($_REQUEST['url']))
 
 $z->getip();
 $z->hhauth();
-$z->hh_resume($_REQUEST['url']);
+//$z->hh_resume($_REQUEST['url']);
 $fn=$z->hh_resume($_REQUEST['url']);
-//    $fn='files/2020-03-23-22-12-02/hh_resume_1.txt';
+//    $fn='files/2020-04-01-20-52-30/hh_resume_1.txt';
 $ar=$z->hh_resume_parse($fn);
 render($ar);
 
