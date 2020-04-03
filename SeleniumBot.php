@@ -46,7 +46,7 @@ class SeleniumBot extends CommonBot
 //        $url = "https://". $LT_USERNAME .":" . $LT_APPKEY ."@hub.lambdatest.com/wd/hub";
 
         $this->simsms_apikey='fuIqftmRjmmEFmvAafz5rUxdB4gE5F';
-        $this->nom_screen=0;    
+        $this->nom_screen=1;
         $this->host = 'http://172.16.10.46:4444/wd/hub';
         //$this->host = $url;
 
@@ -64,7 +64,8 @@ class SeleniumBot extends CommonBot
             $this->cap = [
                 WebDriverCapabilityType::BROWSER_NAME => 'chrome',
                 WebDriverCapabilityType::PLATFORM => 'ANY',
-            //    WebDriverCapabilityType::ENABLE_VIDEO => TRUE,
+//                WebDriverCapabilityType::ENABLE_VIDEO => TRUE,
+//                WebDriverCapabilityType::ENABLE_VNC => TRUE,
 
 
                 WebDriverCapabilityType::PROXY => [
@@ -108,7 +109,11 @@ class SeleniumBot extends CommonBot
         //$driver = ChromeDriver::start($caps);
         //$driver->get('https://old-linux.com/ip/');
              
-        $this->driver = RemoteWebDriver::create($this->host, $this->cap, 12000);
+//        $this->driver = RemoteWebDriver::create($this->host, $this->cap, 12000);
+
+        $this->driver = RemoteWebDriver::create("http://172.16.10.46:4444/wd/hub",
+                                              array("version"=>"79.0", "browserName"=>"chrome", "enableVNC"=> true)
+        );
         //$driver = RemoteWebDriver::create($host, DesiredCapabilities::chrome());
         
         //$this->prepare();
@@ -1036,12 +1041,12 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
             $ind=$op2[0];
             //----------
 
-//            $m=explode('<div class="resume-block__experience-industries">',$v);
-//            $opit1=$m[1];
-//            var_dump($opit1);
-//            $op1=explode('</div>',$opit1);
-//            $op2=explode('</span>',$op1[0]);
-//            $pod_ind=$op2[0];
+            $m=explode('<div class="resume-block__experience-industries">',$v);
+            $opit1=$m[1];
+            $op1=explode('</div>',$opit1);
+            $op2=explode('<span>',$op1[0]);
+            $op3=explode('</span', $op2[2]);
+            $pod_ind=$op3[0];
 
             //----------
 
@@ -1068,6 +1073,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
             $ar['opit'][$k]['period']=trim($period);
             $ar['opit'][$k]['nam']=trim(strip_tags($nam));
             $ar['opit'][$k]['ind']=trim(strip_tags($ind));
+            $ar['opit'][$k]['pod_ind']=trim(strip_tags($pod_ind));
             $ar['opit'][$k]['adres']=trim(strip_tags($adres));
             $ar['opit'][$k]['position']=trim(strip_tags($pos1));
             $ar['opit'][$k]['descr']=trim(strip_tags($descr));
@@ -1095,7 +1101,6 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
 
         //echo $fio; exit;
         //echo $f;
-
         return $ar;
     }
 
@@ -1117,18 +1122,21 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         }
         // Показать все контакты
 
+        for ($i = 0; $i <= 2; $i++) {
+            $this->driver->executeScript('window.scrollTo(0,document.body.scrollHeight);');
 
-
-        try {
-            $btn4 = $this->driver->findElement(WebDriverBy::cssSelector('span.resume-industries__open'));
-            $btn4->click();
-            $this->driver->wait(10);
-            $this->screenshot('hh_resume_3');
-            sleep(2);
-        }
-        catch(\Exception $e)
-        {
-            echo "btn4";
+            try {
+                $btn4 = $this->driver->findElements(WebDriverBy::cssSelector('span.resume-industries__open'));
+                foreach ($btn4 as $btn) {
+                    $btn->click();
+                    $this->driver->wait(5);
+                }
+                $this->driver->wait(10);
+                $this->screenshot('hh_resume_3');
+                sleep(2);
+            } catch (\Exception $e) {
+                echo "btn4";
+            }
         }
 
         // Показать полностью сферу деятельности компании в опыте работы

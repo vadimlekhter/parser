@@ -62,6 +62,7 @@ function render($ar)
         echo "<b>".$item['nam']."</b><br>";
         echo $item['adres']."<br>";
         echo $item['ind']."<br>";
+        echo $item['pod_ind']."<br>";
         echo $item['position']."<br>";
         echo $item['descr']."<br>";
         echo "</td></tr>";
@@ -91,7 +92,7 @@ $z->getip();
 $z->hhauth();
 //$z->hh_resume($_REQUEST['url']);
 $fn=$z->hh_resume($_REQUEST['url']);
-//    $fn='files/2020-04-01-20-52-30/hh_resume_1.txt';
+//    $fn='files/2020-04-03-11-12-29/hh_resume_1.txt';
 $ar=$z->hh_resume_parse($fn);
 render($ar);
 
