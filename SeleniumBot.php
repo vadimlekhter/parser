@@ -962,8 +962,6 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         $z2=explode('</p>',$z[2]);
         $ar['comand']=trim(strip_tags(trim(html_entity_decode($z2[0]))));
 
-
-
 //        $z=explode('<span itemprop="telephone" data-qa="resume-contact-preferred">',$body);
         $z=explode('<span itemprop="telephone">',$body);
         $body=$z[1];
@@ -1003,6 +1001,33 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         $z=explode('</span>',$body);
         //$body=$z[1];
         $ar['cost']=trim(strip_tags(trim(html_entity_decode($z[0]))));
+
+        $z=explode('<span data-qa="resume-block-specialization-category">',$body);
+        $body=$z[1];
+        $z=explode('</span>',$body);
+        //$body=$z[1];
+        $ar['activity_field']=trim(strip_tags(trim(html_entity_decode($z[0]))));
+
+        $z=explode('<ul>',$body);
+        $body=$z[1];
+        $z=explode('</ul>',$body);
+        $z=explode('<li>',$z[0]);
+        $z=explode('</li>',$z[0]);
+        $x='';
+        foreach ($z as $y) {
+            $y=trim(strip_tags(trim(html_entity_decode($y))));
+            $x=$x.$y.' ';
+        }
+        $ar['specialization']=trim(strip_tags(trim(html_entity_decode($x))));
+
+        $z=explode('<p>',$body);
+        $body1=$z[1];
+        $body2=$z[2];
+        $z=explode('</p>',$body1);
+        $ar['occupation']=str_replace('Занятость: ', '', trim(strip_tags(trim(html_entity_decode($z[0])))));
+        $z=explode('</p>',$body2);
+        $ar['shedule']=str_replace('График работы: ', '', trim(strip_tags(trim(html_entity_decode($z[0])))));
+
 
 ///-----------------------
 ///
@@ -1091,6 +1116,64 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         $ar['about']=trim(strip_tags(trim(html_entity_decode($op))));
         unset($z[0]);
 
+
+
+
+        $z=explode('<div class="bloko-tag-list">', $f);
+        $body=$z[1];
+        $z=explode('data-qa="resume-block-driver-experience"', $body);
+        $kl=$z[0];
+        $z=explode('data-qa="bloko-tag__text"', $kl);
+        $y='';
+        foreach ($z as $x) {
+            $y=$y.trim(strip_tags(trim(html_entity_decode($x))));
+        }
+        $y=str_replace('>', ', ', $y);
+        $ar['skills']=substr_replace($y,'', 0, 2);
+
+
+        $z=explode('data-qa="resume-block-driver-experience"', $f);
+        $body=$z[1];
+        $z=explode('data-qa="resume-block-skills"', $body);
+        $body=$z[0];
+        $ar['driving']=trim(strip_tags(trim(html_entity_decode($body))));
+        $ar['driving']=str_replace('class="resume-block">Опыт вождения', '', $ar['driving']);
+
+
+
+        $z=explode('data-qa="resume-block-education"', $f);
+        $body=$z[1];
+        $z=explode('data-qa="resume-block-languages"', $body);
+        $body=$z[0];
+        $z=explode('data-qa="resume-block-education-name"', $body);
+        $body1=trim(strip_tags(trim(html_entity_decode($z[0]))));
+        $body1=str_replace('class="resume-block">Высшее образование', '', $body1);
+        $ar['high_ed']['year'] = $body1;
+        $body2=$z[1];
+        $z=explode('/span', $body2);
+        $ar['high_ed']['inst']=str_replace('>','', trim(strip_tags(trim(html_entity_decode($z[0])))));
+        $ar['high_ed']['spez']=str_replace('>','', trim(strip_tags(trim(html_entity_decode($z[1])))));
+
+
+//        $z=explode('data-qa="resume-block-languages"', $f);
+        $z=explode('data-qa="resume-block-language-item"', $f);
+        $body=$z[1];
+        $z=explode('data-qa="resume-block-additional"', $body);
+        $ar['lang']=str_replace('>','', trim(strip_tags(trim(html_entity_decode($z[0])))));
+
+
+
+        $z=explode('data-qa="resume-block-additional', $f);
+        $body=$z[1];
+        $z=explode('data-qa="similar-resumes-block"', $body);
+        $body=$z[0];
+        $z=explode('<p>', $body);
+        $ar['citizen'] = trim(strip_tags(trim(html_entity_decode($z[1]))));
+        $ar['work_perm'] = trim(strip_tags(trim(html_entity_decode($z[2]))));
+        $ar['time_to_work'] = trim(strip_tags(trim(html_entity_decode($z[3]))));
+
+
+
         //$body=$z[1];
 
         //unset($z[0]);
@@ -1101,6 +1184,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
 
         //echo $fio; exit;
         //echo $f;
+//        var_dump($ar);
         return $ar;
     }
 

@@ -46,7 +46,12 @@ function render($ar)
     echo "<tr><td>Skype</td><td>{$ar["skype"]}</td></tr>";
     echo "<tr bgcolor='#a9a9a9'><td>Опыт</td><td>{$ar["opit_all"]}</td></tr>";
     echo "<tr><td>Позиция</td><td>{$ar["position"]}</td></tr>";
+    echo "<tr bgcolor='#a9a9a9'><td>Сфера деятельности</td><td>{$ar["activity_field"]}</td></tr>";
+    echo "<tr><td>Специализация</td><td>{$ar["specialization"]}</td></tr>";
     echo "<tr bgcolor='#a9a9a9'><td>Желаемая зарплата</td><td>{$ar["cost"]}</td></tr>";
+    echo "<tr><td>Занятость</td><td>{$ar["occupation"]}</td></tr>";
+    echo "<tr bgcolor='#a9a9a9'><td>График работы</td><td>{$ar["shedule"]}</td></tr>";
+
 
     echo '</table>';
 
@@ -68,6 +73,50 @@ function render($ar)
         echo "</td></tr>";
     }
     echo '</table>';
+    echo '<br>';
+    echo '<br>';
+
+    echo '<b>'.'Ключевые навыки'.'</b>';
+    echo '<br>';
+    echo $ar['skills'];
+    echo '<br>';
+    echo '<br>';
+
+    echo '<b>'.'Опыт вождения'.'</b>';
+    echo '<br>';
+    echo $ar['driving'];
+    echo '<br>';
+    echo '<br>';
+
+    echo '<b>'.'Высшее образование'.'</b>';
+    echo '<br>';
+    echo 'Год - ';
+    echo $ar['high_ed']['year'];
+    echo '<br>';
+    echo 'Заведение - ';
+    echo $ar['high_ed']['inst'];
+    echo '<br>';
+    echo 'Специальность - ';
+    echo $ar['high_ed']['spez'];
+    echo '<br>';
+    echo '<br>';
+
+    echo '<b>'.'Знание языков'.'</b>';
+    echo '<br>';
+    echo $ar['lang'];
+    echo '<br>';
+    echo '<br>';
+
+    echo $ar['citizen'];
+    echo '<br>';
+    echo '<br>';
+    echo $ar['work_perm'];
+    echo '<br>';
+    echo '<br>';
+    echo $ar['time_to_work'];
+    echo '<br>';
+    echo '<br>';
+
     exit;
 }
 
@@ -92,7 +141,7 @@ $z->getip();
 $z->hhauth();
 //$z->hh_resume($_REQUEST['url']);
 $fn=$z->hh_resume($_REQUEST['url']);
-//    $fn='files/2020-04-03-11-12-29/hh_resume_1.txt';
+//    $fn='files/2020-04-03-12-00-17/hh_resume_1.txt';
 $ar=$z->hh_resume_parse($fn);
 render($ar);
 
