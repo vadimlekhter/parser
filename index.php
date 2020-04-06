@@ -88,22 +88,52 @@ function render($ar)
     echo '<br>';
     echo '<br>';
 
+//    echo '<b>'.'Высшее образование'.'</b>';
+//    echo '<br>';
+//    echo 'Год - ';
+//    echo $ar['high_ed']['year'];
+//    echo '<br>';
+//    echo 'Заведение - ';
+//    echo $ar['high_ed']['inst'];
+//    echo '<br>';
+//    echo 'Специальность - ';
+//    echo $ar['high_ed']['spez'];
+//    echo '<br>';
+//    echo '<br>';
+
     echo '<b>'.'Высшее образование'.'</b>';
     echo '<br>';
-    echo 'Год - ';
-    echo $ar['high_ed']['year'];
-    echo '<br>';
-    echo 'Заведение - ';
-    echo $ar['high_ed']['inst'];
-    echo '<br>';
-    echo 'Специальность - ';
-    echo $ar['high_ed']['spez'];
+    foreach ($ar['high_ed'] as $item) {
+        echo $item;
+        echo '<br>';
+    }
     echo '<br>';
     echo '<br>';
 
     echo '<b>'.'Знание языков'.'</b>';
     echo '<br>';
-    echo $ar['lang'];
+    foreach ($ar['lang'] as $item) {
+        echo $item;
+        echo '<br>';
+    }
+    echo '<br>';
+    echo '<br>';
+
+    echo '<b>'.'Повышение квалификации, курсы'.'</b>';
+    echo '<br>';
+    foreach ($ar['add_ed'] as $item) {
+        echo $item;
+        echo '<br>';
+    }
+    echo '<br>';
+    echo '<br>';
+
+    echo '<b>'.'Тесты, экзамены'.'</b>';
+    echo '<br>';
+    foreach ($ar['tests'] as $item) {
+        echo $item;
+        echo '<br>';
+    }
     echo '<br>';
     echo '<br>';
 
