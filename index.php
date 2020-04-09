@@ -44,6 +44,8 @@ function render($ar)
     echo "<tr><td>Телефон</td><td>{$ar["phone"]}</td></tr>";
     echo "<tr bgcolor='#a9a9a9'><td>E-mail</td><td>{$ar["email"]}</td></tr>";
     echo "<tr><td>Skype</td><td>{$ar["skype"]}</td></tr>";
+    echo "<tr bgcolor='#a9a9a9'><td>Сайт</td><td>{$ar["site"]}</td></tr>";
+    echo "<tr><td>Предпочтительный способ связи</td><td>{$ar["pref_conn"]}</td></tr>";
     echo "<tr bgcolor='#a9a9a9'><td>Опыт</td><td>{$ar["opit_all"]}</td></tr>";
     echo "<tr><td>Позиция</td><td>{$ar["position"]}</td></tr>";
     echo "<tr bgcolor='#a9a9a9'><td>Сфера деятельности</td><td>{$ar["activity_field"]}</td></tr>";
@@ -52,10 +54,32 @@ function render($ar)
     echo "<tr><td>Занятость</td><td>{$ar["occupation"]}</td></tr>";
     echo "<tr bgcolor='#a9a9a9'><td>График работы</td><td>{$ar["shedule"]}</td></tr>";
 
-
+    echo "<tr><td>Гражданство</td><td>{$ar["citizen"]}</td></tr>";
+    echo "<tr bgcolor='#a9a9a9'><td>Разрешение на работу</td><td>{$ar["work_perm"]}</td></tr>";
+    echo "<tr><td>Желательное время в пути до работы</td><td>{$ar["time_to_work"]}</td></tr>";
     echo '</table>';
 
+//    echo '<br>';
+//    echo '<br>';
+//    echo $ar['citizen'];
+//    echo '<br>';
+//    echo '<br>';
+//    echo $ar['work_perm'];
+//    echo '<br>';
+//    echo '<br>';
+//    echo $ar['time_to_work'];
+//    echo '<br>';
+
+    echo '<br>';
+    echo '<b>'.'Обо мне:'.'</b>';
+    echo '<br>';
+    echo '<br>';
     echo str_replace("\n","<br>",$ar["about"]);
+    echo '<br>';
+    echo '<br>';
+
+    echo '<b>'.'Опыт работы'.'</b>';
+    echo '<br>';
 
     echo '<table>';
 
@@ -101,12 +125,35 @@ function render($ar)
 //    echo '<br>';
 //    echo '<br>';
 
-    echo '<b>'.'Высшее образование'.'</b>';
+
+    echo '<b>'.'Портфолио'.'</b>';
     echo '<br>';
-    foreach ($ar['high_ed'] as $item) {
+    foreach ($ar['portfolio'] as $item) {
         echo $item;
         echo '<br>';
     }
+    echo '<br>';
+    echo '<br>';
+
+    echo '<b>'.$ar['educ_title'].'</b>';
+    echo '<br>';
+//    foreach ($ar['educ'] as $item) {
+//        echo $item;
+//        echo '<br>';
+//    }
+
+    foreach ($ar['educ'] as $item) {
+        echo 'Год - ' . $item[0];
+        echo '<br>';
+        echo 'Заведение - ' . $item[1];
+        echo '<br>';
+        echo 'Отделение - ' . $item[2];
+        echo '<br>';
+        echo 'Специальность - ' . $item[3];
+        echo '<br>';
+        echo '<br>';
+    }
+
     echo '<br>';
     echo '<br>';
 
@@ -122,7 +169,14 @@ function render($ar)
     echo '<b>'.'Повышение квалификации, курсы'.'</b>';
     echo '<br>';
     foreach ($ar['add_ed'] as $item) {
-        echo $item;
+        echo 'Год - ' . $item[0];
+        echo '<br>';
+        echo 'Курс - ' . $item[1];
+        echo '<br>';
+        echo 'Компания - ' . $item[2];
+        echo '<br>';
+        echo 'Специальность - ' . $item[3];
+        echo '<br>';
         echo '<br>';
     }
     echo '<br>';
@@ -130,22 +184,32 @@ function render($ar)
 
     echo '<b>'.'Тесты, экзамены'.'</b>';
     echo '<br>';
-    foreach ($ar['tests'] as $item) {
-        echo $item;
+    foreach ($ar['tests'] as $item) { echo 'Год - ' . $item[0];
+        echo '<br>';
+        echo 'Компания - ' . $item[1];
+        echo '<br>';
+        echo 'Отделение - ' . $item[2];
+        echo '<br>';
+        echo 'Предмет - ' . $item[3];
+        echo '<br>';
         echo '<br>';
     }
     echo '<br>';
     echo '<br>';
 
-    echo $ar['citizen'];
+    echo '<b>'.'Электронные сертификаты'.'</b>';
+    echo '<br>';
+    foreach ($ar['certs'] as $item) {
+        echo 'Сертификат - ' . $item[0];
+        echo '<br>';
+        echo 'Название - ' . $item[1];
+        echo '<br>';
+        echo '<br>';
+    }
     echo '<br>';
     echo '<br>';
-    echo $ar['work_perm'];
-    echo '<br>';
-    echo '<br>';
-    echo $ar['time_to_work'];
-    echo '<br>';
-    echo '<br>';
+
+
 
     exit;
 }
@@ -167,11 +231,10 @@ if (isset($_REQUEST['url']))
 
     //echo "asd";
 
-$z->getip();
-$z->hhauth();
-//$z->hh_resume($_REQUEST['url']);
-$fn=$z->hh_resume($_REQUEST['url']);
-//    $fn='files/2020-04-03-12-00-17/hh_resume_1.txt';
+//$z->getip();
+//$z->hhauth();
+//$fn=$z->hh_resume($_REQUEST['url']);
+    $fn='files/2020-04-09-16-20-17/hh_resume_1.txt';
 $ar=$z->hh_resume_parse($fn);
 render($ar);
 

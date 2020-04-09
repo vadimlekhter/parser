@@ -928,7 +928,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         //$f2=iconv("UTF-8", "WINDOWS-1251", $f);
         //file_put_contents()
 
-        $z=explode('<div class="resume-header">',$f);
+        $z=explode('<div class="resume-header-name">',$f);
         $body=$z[1];
         $z=explode('</h2>',$body);
         $ar['fio']=trim(strip_tags($z[0]));
@@ -1016,11 +1016,25 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
 //        //$body=$z[1];
 //        $ar['skype']=trim(strip_tags(trim(html_entity_decode($z[1]))));
 
+        $z=explode('data-qa="resume-contact-preferred"',$f);
+        $body=$z[1];
+        $z=explode('</span>',$body);
+        //$body=$z[1];
+        $ar['pref_conn']=trim(strip_tags(trim(html_entity_decode($z[0]))));
+
+
         $z=explode('<span class="resume-header-contact" data-qa="resume-personalsite-skype">',$f);
         $body=$z[1];
         $z=explode('</span>',$body);
         //$body=$z[1];
         $ar['skype']=trim(strip_tags(trim(html_entity_decode($z[1]))));
+
+        $z=explode('data-qa="resume-personalsite-personal"',$f);
+        $body=$z[1];
+        $z=explode('">',$body);
+        $body=explode('href="', $z[0]);
+        $ar['site']=$body[1];
+
 
 
 //        $z=explode('<div class="resume-header-print-update-date">',$body);
@@ -1170,10 +1184,6 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
 //            $op1=explode('</span>',$opit1);
             $op1=explode('</div>',$opit1);
             $descr=trim($op1[0]);
-
-
-
-
             $ar['opit'][$k]['last']=$last;
             $ar['opit'][$k]['period']=trim($period);
             $ar['opit'][$k]['nam']=trim(strip_tags($nam));
@@ -1182,7 +1192,6 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
             $ar['opit'][$k]['adres']=trim(strip_tags($adres));
             $ar['opit'][$k]['position']=trim(strip_tags($pos1));
             $ar['opit'][$k]['descr']=trim(strip_tags($descr));
-
         }
 
         $z=explode('<div class="resume-block-container" data-qa="resume-block-skills-content">', $f);
@@ -1194,11 +1203,8 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         $op=str_replace('>',">\r\n",$op);
 
         $ar['about']=trim(strip_tags(trim(html_entity_decode($op))));
+
         unset($z[0]);
-
-
-
-
         $z=explode('<div class="bloko-tag-list">', $f);
         $body=$z[1];
 //        $z=explode('<div class="bloko-columns-row">', $body);
@@ -1242,18 +1248,43 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
 //        $ar['high_ed']['inst']=str_replace('>','', trim(strip_tags(trim(html_entity_decode($z[0])))));
 //        $ar['high_ed']['spez']=str_replace('>','', trim(strip_tags(trim(html_entity_decode($z[1])))));
 
-        $ar['high_ed']=[];
+
+        $ar['portfolio']=[];
+        $z=explode('data-qa="resume-block-portfolio"', $f);
+        $body=$z[1];
+        $z=explode('class="resume-block"', $body);
+        $body=$z[1];
+        $z=explode('src=', $body);
+        unset($z[0]);
+        foreach ($z as $zz) {
+            $zzz = explode('?', $zz);
+            $ar['portfolio'][]=str_replace('"','', trim(strip_tags(trim(html_entity_decode($zzz[0])))));
+        }
+
+        $ar['educ']=[];
         $z=explode('data-qa="resume-block-education"', $f);
+        $x=explode('resume-block__title-text resume-block__title-text_sub', $z[1])[1];
+        $xx=explode('</span>', $x)[0];
+        $ar['educ_title']=str_replace('">', '', trim(strip_tags(trim(html_entity_decode($xx)))));
         $body=$z[1];
         $z=explode('class="resume-block"', $body);
         $body=$z[1];
         $z=explode('class="resume-block-item-gap"', $body);
         unset($z[0], $z[1]);
         foreach ($z as $zz) {
-            $ar['high_ed'][]=str_replace('>','', trim(strip_tags(trim(html_entity_decode($zz)))));
+            $zzz = explode(
+                'bloko-column bloko-column_xs-4 bloko-column_s-6 bloko-column_m-7 bloko-column_l-10',
+                $zz
+            );
+            $year = str_replace('>', '', trim(strip_tags(trim(html_entity_decode($zzz[0])))));
+            $zzzz = explode('resume-block-education-name', $zzz[1]);
+            $zzzzz = explode('</span>', $zzzz[1]);
+            unset($zzzzz[2], $zzzzz[4]);
+            $name = str_replace('">', '', trim(strip_tags(trim(html_entity_decode($zzzzz[0])))));
+            $otdel = str_replace('">', '', trim(strip_tags(trim(html_entity_decode($zzzzz[1])))));
+            $spec = str_replace('">', '', trim(strip_tags(trim(html_entity_decode($zzzzz[3])))));
+            $ar['educ'][] = array($year, $name, $otdel, $spec);
         }
-
-
 
         $z=explode('data-qa="resume-block-languages"', $f);
         $body=$z[1];
@@ -1274,7 +1305,18 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         $z=explode('class="resume-block-item-gap"', $body);
         unset($z[0], $z[1]);
         foreach ($z as $zz) {
-            $ar['add_ed'][]=str_replace('>','', trim(strip_tags(trim(html_entity_decode($zz)))));
+            $zzz = explode(
+                'bloko-column bloko-column_xs-4 bloko-column_s-6 bloko-column_m-7 bloko-column_l-10',
+                $zz
+            );
+            $year = str_replace('>', '', trim(strip_tags(trim(html_entity_decode($zzz[0])))));
+            $zzzz = explode('resume-block-education-organization', $zzz[1]);
+            $name = str_replace('">', '', trim(strip_tags(trim(html_entity_decode($zzzz[0])))));
+            $zzzzz=explode('</span>', $zzzz[1]);
+            unset($zzzzz[1], $zzzzz[3]);
+            $org = str_replace('">', '', trim(strip_tags(trim(html_entity_decode($zzzzz[0])))));
+            $spec = str_replace('">', '', trim(strip_tags(trim(html_entity_decode($zzzzz[2])))));
+            $ar['add_ed'][]=array($year, $name, $org, $spec);
         }
 
         $ar['tests']=[];
@@ -1285,7 +1327,43 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         $z=explode('class="resume-block-item-gap"', $body);
         unset($z[0], $z[1]);
         foreach ($z as $zz) {
-            $ar['tests'][]=str_replace('>','', trim(strip_tags(trim(html_entity_decode($zz)))));
+            $zzz = explode(
+                'bloko-column bloko-column_xs-4 bloko-column_s-6 bloko-column_m-7 bloko-column_l-10',
+                $zz
+            );
+            $year = str_replace('>', '', trim(strip_tags(trim(html_entity_decode($zzz[0])))));
+            $zzzz = explode('resume-block-education-name', $zzz[1]);
+//            $zzzz = $zzz[1];
+            $zzzzz = explode('</span>', $zzzz[1]);
+            unset($zzzzz[2], $zzzzz[4]);
+            $name = str_replace('">', '', trim(strip_tags(trim(html_entity_decode($zzzzz[0])))));
+            $otdel = str_replace('">', '', trim(strip_tags(trim(html_entity_decode($zzzzz[1])))));
+            $spec = str_replace('">', '', trim(strip_tags(trim(html_entity_decode($zzzzz[3])))));
+            $ar['tests'][] = array($year, $name, $otdel, $spec);
+        }
+
+        $ar['certs']=[];
+        $z=explode('data-qa="resume-block-certificate"', $f);
+        $body=$z[1];
+        $z=explode('class="resume-block"', $body);
+        $body=$z[1];
+        $z=explode('class="resume-block-item-gap"', $body);
+        $body=$z[1];
+        $z=explode('target', $body);
+        unset($z[0]);
+        foreach ($z as $zz) {
+            $zzz = explode('award', $zz);
+            unset($zzz[0]);
+            foreach ($zzz as $zzzz) {
+                $zzzz = explode('</a>', $zzzz);
+                unset($zzzz[1]);
+                foreach ($zzzz as $item) {
+                    $zzzzz=explode('">', $item);
+                    $link=str_replace('" href="', '', trim(strip_tags(trim(html_entity_decode($zzzzz[0])))));
+                    $name=str_replace('">', '', trim(strip_tags(trim(html_entity_decode($zzzzz[1])))));
+                    $ar['certs'][]=array($link, $name);
+                }
+            }
         }
 
 
@@ -1294,9 +1372,9 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         $z=explode('data-qa="similar-resumes-block"', $body);
         $body=$z[0];
         $z=explode('<p>', $body);
-        $ar['citizen'] = trim(strip_tags(trim(html_entity_decode($z[1]))));
-        $ar['work_perm'] = trim(strip_tags(trim(html_entity_decode($z[2]))));
-        $ar['time_to_work'] = trim(strip_tags(trim(html_entity_decode($z[3]))));
+        $ar['citizen'] = str_replace('Гражданство: ','', trim(strip_tags(trim(html_entity_decode($z[1])))));
+        $ar['work_perm'] = str_replace('Разрешение на работу: ','', trim(strip_tags(trim(html_entity_decode($z[2])))));
+        $ar['time_to_work'] = str_replace('Желательное время в пути до работы: ','', trim(strip_tags(trim(html_entity_decode($z[3])))));
 
 
 
