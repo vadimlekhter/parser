@@ -209,6 +209,35 @@ function render($ar)
     echo '<br>';
     echo '<br>';
 
+    echo '<b>'.'Комментарии'.'</b>';
+    echo '<br>';
+    foreach ($ar['comments'] as $item) {
+        echo $item[0];
+        echo '<br>';
+        echo 'Автор - ' . $item[1];
+        echo '<br>';
+        echo 'Дата - ' . $item[2];
+        echo '<br>';
+        echo '<br>';
+    }
+    echo '<br>';
+    echo '<br>';
+
+    echo '<b>'.'История'.'</b>';
+    echo '<br>';
+    foreach ($ar['history'] as $item) {
+        echo $item[0];
+        echo '<br>';
+        echo 'URL: ' . $item[1];
+        echo '<br>';
+        echo $item[2];
+        echo '<br>';
+        echo 'Дата - ' . $item[3];
+        echo '<br>';
+        echo '<br>';
+    }
+    echo '<br>';
+    echo '<br>';
 
 
     exit;
@@ -234,7 +263,7 @@ if (isset($_REQUEST['url']))
 $z->getip();
 $z->hhauth();
 $fn=$z->hh_resume($_REQUEST['url']);
-//    $fn='files/2020-04-09-16-20-17/hh_resume_1.txt';
+//    $fn='files/2020-04-13-19-48-07/hh_resume_1.txt';
 $ar=$z->hh_resume_parse($fn);
 render($ar);
 

@@ -67,12 +67,12 @@ class SeleniumBot extends CommonBot
 //                WebDriverCapabilityType::ENABLE_VIDEO => TRUE,
 //                WebDriverCapabilityType::ENABLE_VNC => TRUE,
 
-
-                WebDriverCapabilityType::PROXY => [
-                    'proxyType' => 'manual',
-                    'httpProxy' => $this->proxy['nam'],
-                    'sslProxy' => $this->proxy['nam']
-                    ],
+//
+//                WebDriverCapabilityType::PROXY => [
+//                    'proxyType' => 'manual',
+//                    'httpProxy' => $this->proxy['nam'],
+//                    'sslProxy' => $this->proxy['nam']
+//                    ],
             ];
         }
         else
@@ -83,11 +83,16 @@ class SeleniumBot extends CommonBot
             //    WebDriverCapabilityType::ENABLE_VIDEO => TRUE,
 
 
-        //        WebDriverCapabilityType::PROXY => [
-        //            'proxyType' => 'manual',
-        //            'httpProxy' => '37.203.243.217:43662',
-        //            'sslProxy' => '37.203.243.217:43662'
-        //        ],
+//                WebDriverCapabilityType::PROXY => [
+//                    'proxyType' => 'manual',
+//                    'httpProxy' => '37.203.243.217:43662',
+//                    'sslProxy' => '37.203.243.217:43662'
+//                ],
+                WebDriverCapabilityType::PROXY => [
+                    'proxyType' => 'manual',
+                    'httpProxy' => '37.203.246.6:14150',
+                    'sslProxy' => '37.203.246.6:14150'
+                ],
             ];
         }
 
@@ -111,9 +116,15 @@ class SeleniumBot extends CommonBot
              
 //        $this->driver = RemoteWebDriver::create($this->host, $this->cap, 12000);
 
+
+
         $this->driver = RemoteWebDriver::create("http://172.16.10.46:4444/wd/hub",
                                               array("version"=>"79.0", "browserName"=>"chrome", "enableVNC"=> true)
         );
+
+
+
+
         //$driver = RemoteWebDriver::create($host, DesiredCapabilities::chrome());
         
         //$this->prepare();
@@ -886,7 +897,10 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
 //        $params['is_open_pass']=true;
 
         $login='Hr@cleversales.ru'; //'d.ivanova@klienti.ru'; //$params['login'];
-        $password='zxergh67'; //'9030404'; //$params['password'];
+        $password='568925vku'; //'9030404'; //$params['password'];
+
+//        $login='d.ivanova@klienti.ru'; //'d.ivanova@klienti.ru'; //$params['login'];
+//        $password='Ori9030404'; //'9030404'; //$params['password'];
 //        if (isset($params['is_open_pass']))
 //        {
 //        $is_open_pass=$params['is_open_pass'];
@@ -912,13 +926,46 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         $element2->click();
         $element2->sendKeys($password);
         $this->screenshot('hh_3');
+
         
         $btn3=$this->driver->findElement(WebDriverBy::cssSelector('input[type=submit]'));
         $btn3->click();
-
         $this->screenshot('hh_4');
-        //sleep(1);
-       
+
+//        sleep(2);
+//
+//        $element4=$this->driver->findElement(WebDriverBy::cssSelector('input[name=password]'));
+//        $element4->click();
+//        $element4->sendKeys($password);
+//        $this->screenshot('hh_5');
+//
+//        $btn5=$this->driver->findElement(WebDriverBy::cssSelector('input[type=submit]'));
+//        $btn5->click();
+//        $this->screenshot('hh_6');
+
+//        sleep(2);
+//
+//
+//        $this->screenshot('hh_5');
+//        $element=$this->driver->findElement(WebDriverBy::cssSelector('input[name=username]'));
+//        $element->click();
+//        $element->sendKeys($login);
+//        $this->screenshot('hh_6');
+//        //$btn=$this->driver->findElement(WebDriverBy::cssSelector('button[type=submit]'));
+//        //$btn->click();
+////        $this->driver->wait(5,300)->until(
+////            WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::cssSelector('input[name=password]'))
+////        );
+//
+//        $element2=$this->driver->findElement(WebDriverBy::cssSelector('input[name=password]'));
+//        $element2->click();
+//        $element2->sendKeys($password);
+//        $this->screenshot('hh_7');
+//
+//        $btn3=$this->driver->findElement(WebDriverBy::cssSelector('input[type=submit]'));
+//        $btn3->click();
+//
+//        $this->screenshot('hh_8');
         
     }
 
@@ -1378,6 +1425,90 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
 
 
 
+        if (strpos($f, 'Раскрыть')!== false) {
+            var_dump('Есть');
+//            $z=explode('Комментарии</a><a class="bloko-tabs__item" draggable="false">История</a><a class="bloko-tabs__item" draggable="false">Последние просмотры за 3 месяца', $f);
+//            $z=explode('Комментарии</a><a class="bloko-tabs__item" draggable="false">История', $f);
+            $z=explode('Комментарии</a><a class="bloko-tabs__item" draggable="false">', $f);
+            $body=$z[1];
+            $z=explode('supernova-footer', $body);
+            $body=$z[0];
+            $z=explode('bloko-column bloko-column_xs-0 bloko-column_s-4 bloko-column_m-3 bloko-column_l-4', $body);
+            $body=explode('data-qa="resume-block-position', $z[0]);
+
+        } else {
+            var_dump('Нет');
+            $z=explode('data-qa="resume-sidebar"', $f);
+
+            $body=$z[1];
+            $z=explode('"supernova-footer"', $body);
+
+            $body=$z[0];
+
+            $z=explode('bloko-column bloko-column_xs-0 bloko-column_s-4 bloko-column_m-3 bloko-column_l-4', $body);
+
+            $body=explode('data-qa="resume-block-position', $z[1]);
+        }
+
+
+//        $z=explode('data-qa="resume-sidebar"', $f);
+//        $z=explode('Комментарии</a><a class="bloko-tabs__item" draggable="false">История</a><a class="bloko-tabs__item" draggable="false">Последние просмотры за 3 месяца', $f);
+//        $z=explode('Комментарии</a><a class="bloko-tabs__item" draggable="false">История', $f);
+
+//        $body=$z[1];
+
+
+//        $z=explode('supernova-footer', $body);
+
+
+//        $body=explode('data-qa="resume-block-position', $z[0]);
+//        var_dump(trim(strip_tags(trim(html_entity_decode($body[0])))));
+        $comments=$body[0];
+        $history=$z[2];
+        $z=explode('data-qa="resume-comment-item"', $comments);
+        unset($z[0]);
+
+        $ar['comments']=[];
+        foreach ($z as $zz) {
+            $zzz = explode('comment__author', $zz);
+
+            $text = str_replace('>', '', trim(strip_tags(trim(html_entity_decode($zzz[0])))));
+//            var_dump($text);
+            $text=str_replace('Свернуть', '', $text);
+
+            $zzzz=explode('comment__author', $zzz[1]);
+            $body=explode('comment__date', $zzzz[0]);
+            $comm_author=str_replace('">','', trim(strip_tags(trim(html_entity_decode($body[0])))));
+            $comm_author=str_replace(',','', $comm_author);
+            $zzzzz=explode('comment__date', $zzz[1]);
+            $comm_date=str_replace('">','', trim(strip_tags(trim(html_entity_decode($zzzzz[1])))));
+            $ar['comments'][]=array($text, $comm_author, $comm_date);
+        }
+
+        $history=explode('/h3', $history)[1];
+
+        $z=explode('data-qa="resume-history-item"', $history);
+        unset($z[0]);
+        $ar['history']=[];
+
+        foreach ($z as $zz) {
+            $zzz=explode('data-qa="resume-history-item-info',$zz);
+            $href1=explode('href="', $zzz[0]);
+            $href2=explode('">', $href1[1]);
+            $href='https://khabarovsk.hh.ru'.$href2[0];
+            $text=str_replace('>','', trim(strip_tags(trim(html_entity_decode($zzz[0])))));
+            $hist_info=str_replace('">→ ','', trim(strip_tags(trim(html_entity_decode($zzz[1])))));
+            $zzzz=explode(', ', $hist_info);
+            $hist_type=str_replace('">→ ','', trim(strip_tags(trim(html_entity_decode($zzzz[0])))));
+            $hist_date=str_replace('">→ ','', trim(strip_tags(trim(html_entity_decode($zzzz[1])))));
+//            $hist_date=str_replace('Показать всю историю','', $hist_date);
+            $ar['history'][]=array($text, $href, $hist_type, $hist_date);
+        }
+
+
+
+
+
         //$body=$z[1];
 
         //unset($z[0]);
@@ -1395,42 +1526,129 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
     public function hh_resume($url)
     {
         $this->driver->get($url);
-        $this->screenshot('hh_resume_1');
+
+        $this->screenshot('hh_resume_0');
 
         try {
-            $btn3 = $this->driver->findElement(WebDriverBy::cssSelector('span.bloko-link-switch'));
-            $btn3->click();
+            $btn5 = $this->driver->findElement(WebDriverBy::cssSelector('span.bloko-link-switch.bloko-link-switch_tertiary'));
+            $btn5->click();
+            $this->driver->wait(10);
+            $this->screenshot('hh_resume_1');
+            sleep(2);
+        }
+        catch(\Exception $e)
+        {
+            echo "Клик на Ещё комментарии".PHP_EOL;
+        }
+
+        try {
+            $btn5 = $this->driver->findElement(WebDriverBy::cssSelector('span.bloko-link-switch.bloko-link-switch_inherited'));
+            $btn5->click();
             $this->driver->wait(10);
             $this->screenshot('hh_resume_2');
             sleep(2);
         }
         catch(\Exception $e)
         {
-            echo "$btn3";
+            echo "Клик на Раскрыть".PHP_EOL;
         }
-        // Показать все контакты
 
-        for ($i = 0; $i <= 2; $i++) {
-            $this->driver->executeScript('window.scrollTo(0,document.body.scrollHeight);');
+
+        try {
+            $btn8 = $this->driver->findElement(WebDriverBy::linkText('История'));
+            $btn8->click();
+            $this->driver->wait(10);
+            $this->screenshot('hh_resume_3');
+            sleep(2);
+        }
+        catch(\Exception $e)
+        {
+            echo "Переход на Историю".PHP_EOL;
+        }
+
+        try {
+            $this->driver->executeScript('window.scrollTo(0,300);');
+//            $this->driver->executeScript('window.scrollTo(0,500);');
+//            $btn7 = $this->driver->findElements(WebDriverBy::cssSelector('span.bloko-link-switch.bloko-link-switch_inherited'));
+//            $btn7 = $this->driver->findElements(WebDriverBy::cssSelector('span.bloko-link-switch_inherited'));
+//            $btn7 = $this->driver->findElements(WebDriverBy::cssSelector("span[data-qa='resume-history-toggle']"));
+            $btn7 = $this->driver->findElement(WebDriverBy::xpath("//span[text() = 'Показать всю историю']"));
+            var_dump($btn7->getLocation() );
+            $btn7->click();
+            $this->driver->wait(10);
+
+//            foreach ($btn7 as $btn) {
+//                var_dump('1');
+//                $btn->click();
+//                sleep(2);
+//            }
+            sleep(5);
+
+            $this->screenshot('hh_resume_4');
+            var_dump('2');
+
+        }
+        catch(\Exception $e)
+        {
+            echo "Клик на Показать всю историю".PHP_EOL;
+        }
+
+        try {
+            $btn9 = $this->driver->findElement(WebDriverBy::linkText('Комментарии'));
+            $btn9->click();
+            $this->driver->wait(10);
+            $this->screenshot('hh_resume_5');
+            sleep(2);
+        }
+        catch(\Exception $e)
+        {
+            echo "Клик на Комментарии".PHP_EOL;
+        }
+
+
+        try {
+            $btn3 = $this->driver->findElement(WebDriverBy::cssSelector('span.bloko-link-switch'));
+            $btn3->click();
+            $this->driver->wait(10);
+            $this->screenshot('hh_resume_6');
+            sleep(2);
+        }
+        catch(\Exception $e)
+        {
+            echo "Открыть Контакты";
+        }
+
+
+
+
+
+//        for ($i = 0; $i <= 2; $i++) {
+
 
             try {
-                $btn4 = $this->driver->findElements(WebDriverBy::cssSelector('span.resume-industries__open'));
+                $btn4 = $this->driver->findElements(WebDriverBy::cssSelector('spa.resume-industries__open'));
                 foreach ($btn4 as $btn) {
+//                    var_dump($btn->getLocation());
                     $btn->click();
                     $this->driver->wait(5);
                 }
                 $this->driver->wait(10);
-                $this->screenshot('hh_resume_3');
+                $this->screenshot('hh_resume_7');
                 sleep(2);
             } catch (\Exception $e) {
-                echo "btn4";
+                echo "Сферы деятельности";
             }
-        }
+
+//            $this->driver->executeScript('window.scrollTo(0,document.body.scrollHeight);');
+//        }
 
         // Показать полностью сферу деятельности компании в опыте работы
 
+
+
         $s=$this->driver->getPageSource();
-            //findElement(WebDriverBy::tagName('body')).getAttribute('innerHTML');
+//        $s=$this->driver->getBody();
+//            $s=$this->driver->findElement(WebDriverBy::tagName('body')).getAttribute('innerHTML');
         //echo $s;
         $fn="files/".$this->fld.'/hh_resume_1.txt';
         //$s=$this->driver->getPageSource();
