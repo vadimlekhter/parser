@@ -1573,7 +1573,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
 //            $btn7 = $this->driver->findElements(WebDriverBy::cssSelector('span.bloko-link-switch_inherited'));
 //            $btn7 = $this->driver->findElements(WebDriverBy::cssSelector("span[data-qa='resume-history-toggle']"));
             $btn7 = $this->driver->findElement(WebDriverBy::xpath("//span[text() = 'Показать всю историю']"));
-            var_dump($btn7->getLocation() );
+//            var_dump($btn7->getLocation() );
             $btn7->click();
             $this->driver->wait(10);
 
@@ -1585,7 +1585,6 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
             sleep(5);
 
             $this->screenshot('hh_resume_4');
-            var_dump('2');
 
         }
         catch(\Exception $e)
@@ -1605,7 +1604,6 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
             echo "Клик на Комментарии".PHP_EOL;
         }
 
-
         try {
             $btn3 = $this->driver->findElement(WebDriverBy::cssSelector('span.bloko-link-switch'));
             $btn3->click();
@@ -1619,30 +1617,20 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         }
 
 
-
-
-
-//        for ($i = 0; $i <= 2; $i++) {
-
-
-            try {
-                $btn4 = $this->driver->findElements(WebDriverBy::cssSelector('spa.resume-industries__open'));
-                foreach ($btn4 as $btn) {
+        try {
+            $btn4 = $this->driver->findElements(WebDriverBy::cssSelector('spa.resume-industries__open'));
+            foreach ($btn4 as $btn) {
 //                    var_dump($btn->getLocation());
-                    $btn->click();
-                    $this->driver->wait(5);
-                }
-                $this->driver->wait(10);
-                $this->screenshot('hh_resume_7');
-                sleep(2);
-            } catch (\Exception $e) {
-                echo "Сферы деятельности";
+                $btn->click();
+                $this->driver->wait(5);
             }
+            $this->driver->wait(10);
+            $this->screenshot('hh_resume_7');
+            sleep(2);
+        } catch (\Exception $e) {
+            echo "Сферы деятельности";
+        }
 
-//            $this->driver->executeScript('window.scrollTo(0,document.body.scrollHeight);');
-//        }
-
-        // Показать полностью сферу деятельности компании в опыте работы
 
 
 
