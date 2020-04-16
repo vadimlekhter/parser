@@ -263,7 +263,7 @@ if (isset($_REQUEST['url']))
 $z->getip();
 $z->hhauth();
 $fn=$z->hh_resume($_REQUEST['url']);
-//    $fn='files/2020-04-13-19-48-07/hh_resume_1.txt';
+//    $fn='files/2020-04-15-19-54-54/hh_resume_1.txt';
 $ar=$z->hh_resume_parse($fn);
 render($ar);
 

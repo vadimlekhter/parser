@@ -1501,7 +1501,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
             $zzzz=explode(', ', $hist_info);
             $hist_type=str_replace('">→ ','', trim(strip_tags(trim(html_entity_decode($zzzz[0])))));
             $hist_date=str_replace('">→ ','', trim(strip_tags(trim(html_entity_decode($zzzz[1])))));
-//            $hist_date=str_replace('Показать всю историю','', $hist_date);
+            $hist_date=str_replace('Показать всю историю','', $hist_date);
             $ar['history'][]=array($text, $href, $hist_type, $hist_date);
         }
 
