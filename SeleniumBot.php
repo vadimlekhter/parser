@@ -896,11 +896,11 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
     {
 //        $params['is_open_pass']=true;
 
-        $login='Hr@cleversales.ru'; //'d.ivanova@klienti.ru'; //$params['login'];
-        $password='568925vku'; //'9030404'; //$params['password'];
+//        $login='Hr@cleversales.ru'; //'d.ivanova@klienti.ru'; //$params['login'];
+//        $password='568925vku'; //'9030404'; //$params['password'];
 
-//        $login='d.ivanova@klienti.ru'; //'d.ivanova@klienti.ru'; //$params['login'];
-//        $password='Ori9030404'; //'9030404'; //$params['password'];
+        $login='d.ivanova@klienti.ru'; //'d.ivanova@klienti.ru'; //$params['login'];
+        $password='Ori9030404'; //'9030404'; //$params['password'];
 //        if (isset($params['is_open_pass']))
 //        {
 //        $is_open_pass=$params['is_open_pass'];
@@ -1505,21 +1505,6 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
             $ar['history'][]=array($text, $href, $hist_type, $hist_date);
         }
 
-
-
-
-
-        //$body=$z[1];
-
-        //unset($z[0]);
-
-//        print_r($z);
-        //print_r($ar);
-
-
-        //echo $fio; exit;
-        //echo $f;
-//        var_dump($ar);
         return $ar;
     }
 
@@ -1540,6 +1525,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         {
             echo "Клик на Ещё комментарии".PHP_EOL;
         }
+
 
         try {
             $btn5 = $this->driver->findElement(WebDriverBy::cssSelector('span.bloko-link-switch.bloko-link-switch_inherited'));
@@ -1566,31 +1552,20 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
             echo "Переход на Историю".PHP_EOL;
         }
 
+
         try {
             $this->driver->executeScript('window.scrollTo(0,300);');
-//            $this->driver->executeScript('window.scrollTo(0,500);');
-//            $btn7 = $this->driver->findElements(WebDriverBy::cssSelector('span.bloko-link-switch.bloko-link-switch_inherited'));
-//            $btn7 = $this->driver->findElements(WebDriverBy::cssSelector('span.bloko-link-switch_inherited'));
-//            $btn7 = $this->driver->findElements(WebDriverBy::cssSelector("span[data-qa='resume-history-toggle']"));
             $btn7 = $this->driver->findElement(WebDriverBy::xpath("//span[text() = 'Показать всю историю']"));
-//            var_dump($btn7->getLocation() );
             $btn7->click();
             $this->driver->wait(10);
-
-//            foreach ($btn7 as $btn) {
-//                var_dump('1');
-//                $btn->click();
-//                sleep(2);
-//            }
-            sleep(5);
-
             $this->screenshot('hh_resume_4');
-
+            sleep(5);
         }
         catch(\Exception $e)
         {
             echo "Клик на Показать всю историю".PHP_EOL;
         }
+
 
         try {
             $btn9 = $this->driver->findElement(WebDriverBy::linkText('Комментарии'));
@@ -1603,6 +1578,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         {
             echo "Клик на Комментарии".PHP_EOL;
         }
+
 
         try {
             $btn3 = $this->driver->findElement(WebDriverBy::cssSelector('span.bloko-link-switch'));
@@ -1620,7 +1596,6 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         try {
             $btn4 = $this->driver->findElements(WebDriverBy::cssSelector('spa.resume-industries__open'));
             foreach ($btn4 as $btn) {
-//                    var_dump($btn->getLocation());
                 $btn->click();
                 $this->driver->wait(5);
             }
@@ -1631,15 +1606,8 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
             echo "Сферы деятельности";
         }
 
-
-
-
         $s=$this->driver->getPageSource();
-//        $s=$this->driver->getBody();
-//            $s=$this->driver->findElement(WebDriverBy::tagName('body')).getAttribute('innerHTML');
-        //echo $s;
         $fn="files/".$this->fld.'/hh_resume_1.txt';
-        //$s=$this->driver->getPageSource();
         file_put_contents($fn, $s);
 
         return $fn;

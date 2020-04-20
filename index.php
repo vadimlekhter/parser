@@ -59,16 +59,6 @@ function render($ar)
     echo "<tr><td>Желательное время в пути до работы</td><td>{$ar["time_to_work"]}</td></tr>";
     echo '</table>';
 
-//    echo '<br>';
-//    echo '<br>';
-//    echo $ar['citizen'];
-//    echo '<br>';
-//    echo '<br>';
-//    echo $ar['work_perm'];
-//    echo '<br>';
-//    echo '<br>';
-//    echo $ar['time_to_work'];
-//    echo '<br>';
 
     echo '<br>';
     echo '<b>'.'Обо мне:'.'</b>';
@@ -112,19 +102,6 @@ function render($ar)
     echo '<br>';
     echo '<br>';
 
-//    echo '<b>'.'Высшее образование'.'</b>';
-//    echo '<br>';
-//    echo 'Год - ';
-//    echo $ar['high_ed']['year'];
-//    echo '<br>';
-//    echo 'Заведение - ';
-//    echo $ar['high_ed']['inst'];
-//    echo '<br>';
-//    echo 'Специальность - ';
-//    echo $ar['high_ed']['spez'];
-//    echo '<br>';
-//    echo '<br>';
-
 
     echo '<b>'.'Портфолио'.'</b>';
     echo '<br>';
@@ -135,13 +112,9 @@ function render($ar)
     echo '<br>';
     echo '<br>';
 
+
     echo '<b>'.$ar['educ_title'].'</b>';
     echo '<br>';
-//    foreach ($ar['educ'] as $item) {
-//        echo $item;
-//        echo '<br>';
-//    }
-
     foreach ($ar['educ'] as $item) {
         echo 'Год - ' . $item[0];
         echo '<br>';
@@ -153,9 +126,9 @@ function render($ar)
         echo '<br>';
         echo '<br>';
     }
+    echo '<br>';
+    echo '<br>';
 
-    echo '<br>';
-    echo '<br>';
 
     echo '<b>'.'Знание языков'.'</b>';
     echo '<br>';
@@ -165,6 +138,7 @@ function render($ar)
     }
     echo '<br>';
     echo '<br>';
+
 
     echo '<b>'.'Повышение квалификации, курсы'.'</b>';
     echo '<br>';
@@ -182,6 +156,7 @@ function render($ar)
     echo '<br>';
     echo '<br>';
 
+
     echo '<b>'.'Тесты, экзамены'.'</b>';
     echo '<br>';
     foreach ($ar['tests'] as $item) { echo 'Год - ' . $item[0];
@@ -197,6 +172,7 @@ function render($ar)
     echo '<br>';
     echo '<br>';
 
+
     echo '<b>'.'Электронные сертификаты'.'</b>';
     echo '<br>';
     foreach ($ar['certs'] as $item) {
@@ -208,6 +184,7 @@ function render($ar)
     }
     echo '<br>';
     echo '<br>';
+
 
     echo '<b>'.'Комментарии'.'</b>';
     echo '<br>';
@@ -222,6 +199,7 @@ function render($ar)
     }
     echo '<br>';
     echo '<br>';
+
 
     echo '<b>'.'История'.'</b>';
     echo '<br>';
@@ -266,13 +244,7 @@ $fn=$z->hh_resume($_REQUEST['url']);
 //    $fn='files/2020-04-15-19-54-54/hh_resume_1.txt';
 $ar=$z->hh_resume_parse($fn);
 render($ar);
-
-//$z->hh_resume('https://hh.ru/resume/fa2ff3960007c47e2000437fd47a4176797333');
 }
-//$z->hh_resume('https://hh.ru/resume/5e5d21900005042bca00437fd4577674775372');
-
-//$z->hh_resume_parse('files/2020-03-22-22-25-04/hh_resume_1.txt');
-
 
 // $host = 'http://172.16.10.46:4444/wd/hub';
 
