@@ -1,5 +1,7 @@
 {
     "require": {
-        "facebook/webdriver": "^1.7"
+        "facebook/webdriver": "^1.7",
+        "vlucas/phpdotenv": "^4.1",
+	"ruckusing/ruckusing-migrations": "dev-master"
     }
 }

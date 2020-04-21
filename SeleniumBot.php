@@ -900,7 +900,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
 //        $password='568925vku'; //'9030404'; //$params['password'];
 
         $login='d.ivanova@klienti.ru'; //'d.ivanova@klienti.ru'; //$params['login'];
-        $password='Ori9030404'; //'9030404'; //$params['password'];
+        $password='9030404'; //'9030404'; //$params['password'];
 //        if (isset($params['is_open_pass']))
 //        {
 //        $is_open_pass=$params['is_open_pass'];
@@ -1002,7 +1002,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         $body=$z[1];
         $z=explode('</span>',$body);
         //$body=$z[1];
-        $ar['age']=trim(strip_tags(trim(html_entity_decode($z[0]))));
+        $ar['age']=(int)explode(' ',trim(strip_tags(trim(html_entity_decode($z[0])))))[0];
 
 //        $z=explode('<meta itemprop="birthDate" data-qa="resume-personal-birthday" content="',$body);
 //        $body=$z[1];

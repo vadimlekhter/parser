@@ -1,0 +1,25 @@
+#!/bin/bash
+ruckus_dir="./../vendor/ruckusing/ruckusing-migrations"
+if [ ! -d $ruckus_dir ]; then
+    echo "Ruckusing-Migrations wasn't detected. Please, use Composer to install the library."
+    exit
+fi
+if [ ! -f "ruckusing.conf.php" ]; then
+    echo "Ruckusing conf. file wasn't detected. Please, create proper ruckusing.conf.php."
+    exit
+fi
+if [ "$#" -lt 1 ]; then
+	echo "At least 1 argument required"
+	echo "See ./ruckus --help"
+	exit
+fi
+if [ "$1" == "--help" -o "$1" == "-h" ]; then
+	echo "Usage: ./ruckus [--help] <task-name> [<parameter1>[ <parameter2> [...]]]"
+	echo ""
+	echo "The available ruckus commands are:"
+	echo "    ./ruckus db:migrate                     Ruckus scenario for tasks such as db:migrate, db:setup, etc."
+	echo "    ./ruckus db:generate <migration_name>   Ruckus scenarion for generating migration scaffolding"
+	echo ""
+	exit
+fi
+php $ruckus_dir"/ruckus.php" "$1" "${@:2}"

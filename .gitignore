@@ -1,3 +1,5 @@
-vendor
-files
-.idea
+/vendor
+/files
+/.idea
+.env
+/db/logs/development.log
