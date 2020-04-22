@@ -32,6 +32,7 @@ class SeleniumBot extends CommonBot
         $fld=date('Y-m-d-H-i-s');
         $this->fld=$fld;
         mkdir('files/'.$fld,  0777, true);
+//        mkdir('files/query'.$fld,  0777, true);
 
 //        $LT_USERNAME = "origamiv";
 //
@@ -899,8 +900,12 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
 //        $login='Hr@cleversales.ru'; //'d.ivanova@klienti.ru'; //$params['login'];
 //        $password='568925vku'; //'9030404'; //$params['password'];
 
-        $login='d.ivanova@klienti.ru'; //'d.ivanova@klienti.ru'; //$params['login'];
-        $password='9030404'; //'9030404'; //$params['password'];
+//        $login='d.ivanova@klienti.ru'; //'d.ivanova@klienti.ru'; //$params['login'];
+//        $password='9030404'; //'9030404'; //$params['password'];
+
+        $login=$_REQUEST['login']; //'d.ivanova@klienti.ru'; //$params['login'];
+        $password=$_REQUEST['password']; //'9030404'; //$params['password'];
+
 //        if (isset($params['is_open_pass']))
 //        {
 //        $is_open_pass=$params['is_open_pass'];
@@ -1026,9 +1031,9 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         $body=$z[1];
         $z=explode('</span>',$body);
         $ar['city']=trim(strip_tags(trim(html_entity_decode($z[0]))));
-        $ar['pereezd']=trim(strip_tags(trim(html_entity_decode($z[1]))));
+        $ar['pereezd']=str_replace(', ', '', trim(strip_tags(trim(html_entity_decode($z[1])))));
         $z2=explode('</p>',$z[2]);
-        $ar['comand']=trim(strip_tags(trim(html_entity_decode($z2[0]))));
+        $ar['comand']=str_replace(', ', '', trim(strip_tags(trim(html_entity_decode($z2[0])))));
 
 
 //        $z=explode('<span itemprop="telephone">',$body);
@@ -1426,7 +1431,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
 
 
         if (strpos($f, 'Раскрыть')!== false) {
-            var_dump('Есть');
+//            var_dump('Есть');
 //            $z=explode('Комментарии</a><a class="bloko-tabs__item" draggable="false">История</a><a class="bloko-tabs__item" draggable="false">Последние просмотры за 3 месяца', $f);
 //            $z=explode('Комментарии</a><a class="bloko-tabs__item" draggable="false">История', $f);
             $z=explode('Комментарии</a><a class="bloko-tabs__item" draggable="false">', $f);
@@ -1437,7 +1442,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
             $body=explode('data-qa="resume-block-position', $z[0]);
 
         } else {
-            var_dump('Нет');
+//            var_dump('Нет');
             $z=explode('data-qa="resume-sidebar"', $f);
 
             $body=$z[1];
@@ -1508,6 +1513,24 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         return $ar;
     }
 
+
+    public function hh_query ($url) {
+
+        $fld=date('Y-m-d-H-i-s');
+        $this->fld=$fld;
+        mkdir('files/'.$fld,  0777, true);
+
+        $this->driver->get($url);
+        $s=$this->driver->getPageSource();
+        $fn="files/query".$this->fld.'/hh_query_1.txt';
+        file_put_contents($fn, $s);
+
+        return $fn;
+    }
+
+
+
+
     public function hh_resume($url)
     {
         $this->driver->get($url);
@@ -1523,7 +1546,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         }
         catch(\Exception $e)
         {
-            echo "Клик на Ещё комментарии".PHP_EOL;
+//            echo "Клик на Ещё комментарии".PHP_EOL;
         }
 
 
@@ -1536,7 +1559,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         }
         catch(\Exception $e)
         {
-            echo "Клик на Раскрыть".PHP_EOL;
+//            echo "Клик на Раскрыть".PHP_EOL;
         }
 
 
@@ -1549,7 +1572,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         }
         catch(\Exception $e)
         {
-            echo "Переход на Историю".PHP_EOL;
+//            echo "Переход на Историю".PHP_EOL;
         }
 
 
@@ -1563,7 +1586,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         }
         catch(\Exception $e)
         {
-            echo "Клик на Показать всю историю".PHP_EOL;
+//            echo "Клик на Показать всю историю".PHP_EOL;
         }
 
 
@@ -1576,7 +1599,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         }
         catch(\Exception $e)
         {
-            echo "Клик на Комментарии".PHP_EOL;
+//            echo "Клик на Комментарии".PHP_EOL;
         }
 
 
@@ -1589,7 +1612,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         }
         catch(\Exception $e)
         {
-            echo "Открыть Контакты";
+//            echo "Открыть Контакты";
         }
 
 
@@ -1603,7 +1626,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
             $this->screenshot('hh_resume_7');
             sleep(2);
         } catch (\Exception $e) {
-            echo "Сферы деятельности";
+//            echo "Сферы деятельности";
         }
 
         $s=$this->driver->getPageSource();

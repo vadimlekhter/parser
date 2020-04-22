@@ -9,7 +9,7 @@ class CreateHhAnketsTable extends Ruckusing_Migration_Base
         $table->column('fio', 'string', array('limit' => '128'));
         $table->column('gender', 'string', array('limit' => '15'));
         $table->column('age', 'integer', array('limit' => '5'));
-        $table->column('birth', 'date');
+        $table->column('birth', 'string', array('limit' => '24'));
         $table->column('city', 'string', array('limit' => '32'));
         $table->column('phone', 'string', array('limit' => '24'));
         $table->column('email', 'string', array('limit' => '48'));

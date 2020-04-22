@@ -4,7 +4,7 @@ require "Common.php";
 require "CommonBot.php";
 require "SeleniumBot.php";
 
-function render($ar)
+function render($ar, $pdo)
 {
 //    var_dump($ar);exit();
 
@@ -35,21 +35,7 @@ function render($ar)
     }
 
 
-    $host = getenv('DB_HOST');
-    $dbname = getenv('DB_NAME');
-    $user = getenv('DB_USER');
-    $pass = getenv('DB_PASS');
-    $charset = getenv('DB_CHARSET');
 
-    $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
-
-    $opt = [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false,
-    ];
-
-    $pdo = new PDO($dsn, $user, $pass, $opt);
 
     $pdo->beginTransaction();
     try {
@@ -61,7 +47,9 @@ function render($ar)
         echo '<table>';
         echo "<tr bgcolor='#a9a9a9'><td>Пол</td><td>{$ar["gender"]}</td></tr>";
         echo "<tr><td>Возраст</td><td>{$ar["age"]}</td></tr>";
-        echo "<tr bgcolor='#a9a9a9'><td>Город</td><td>{$ar["city"]} {$ar["pereezd"]} {$ar["comand"]}</td></tr>";
+        echo "<tr bgcolor='#a9a9a9'><td>Город</td><td>{$ar["city"]}</td></tr>";
+        echo "<tr><td>Переезд</td><td>{$ar["pereezd"]}</td></tr>";
+        echo "<tr bgcolor='#a9a9a9'><td>Командировки</td><td>{$ar["comand"]}</td></tr>";
         echo "<tr><td>Дата рождения</td><td>{$ar["birth"]}</td></tr>";
         echo "<tr bgcolor='#a9a9a9'><td>Резюме обновлено</td><td>{$ar["dat_update"]}</td></tr>";
         echo "<tr><td>Телефон</td><td>{$ar["phone"]}</td></tr>";
@@ -428,6 +416,25 @@ VALUES (:id_ank, :text, :href, :hist_type, :hist_date)'
         echo '<br>';
         echo '<br>';
 
+        //----------------------------------------------------------
+
+        if (!empty($_REQUEST['url'])) {
+            $stmt = $pdo->prepare(
+                'INSERT INTO resume_parsings 
+(url, login, password, date)  
+VALUES (:url, :login, :password, :date)'
+            );
+            $stmt->execute(
+                array(
+                    'url' => $_REQUEST['url'],
+                    'login' => $_REQUEST['login'],
+                    'password' => $_REQUEST['password'],
+                    'date' => date("Y-m-d H:i:s"),
+                )
+            );
+        }
+
+
         $pdo->commit();
 
         exit;
@@ -437,10 +444,27 @@ VALUES (:id_ank, :text, :href, :hist_type, :hist_date)'
         throw $e;
     }
 }
-
+//_____________________________________________
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+$host = getenv('DB_HOST');
+$dbname = getenv('DB_NAME');
+$user = getenv('DB_USER');
+$pass = getenv('DB_PASS');
+$charset = getenv('DB_CHARSET');
+
+$dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
+
+$opt = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES => false,
+];
+
+$pdo = new PDO($dsn, $user, $pass, $opt);
+
+//____________________________________________
 
 $item['db_host']='localhost';
 $item['db_name']='mycrm';
@@ -458,21 +482,31 @@ if (isset($_REQUEST['url']))
 
     //echo "asd";
 
-//$z->getip();
-//$z->hhauth();
-//$fn=$z->hh_resume($_REQUEST['url']);
+$z->getip();
+$z->hhauth();
+$fn=$z->hh_resume($_REQUEST['url']);
 //    $fn='files/2020-04-09-13-32-11/hh_resume_1.txt';
-    $fn='files/2020-04-16-12-17-58/hh_resume_1.txt';
+//    $fn='files/2020-04-16-12-17-58/hh_resume_1.txt';
+//    $fn='files/2020-04-22-10-40-18/hh_resume_1.txt';
 $ar=$z->hh_resume_parse($fn);
-render($ar);
+render($ar, $pdo);
 }
 
 // $host = 'http://172.16.10.46:4444/wd/hub';
 
 ?>
 
+<!--<a href="query.php">Поиск резюме</a>-->
+
 <form>
     <h2>Введите URL резюме</h2>
     <input type="text" name="url">
+
+    <h2>Введите логин</h2>
+    <input type="text" name="login">
+
+    <h2>Введите пароль</h2>
+    <input type="text" name="password">
+
     <input type="submit">
 </form>
