@@ -23,3 +23,4 @@ class CreateHhAddedTable extends Ruckusing_Migration_Base
         $this->drop_table('hh_added');
     }//down()
 }
+

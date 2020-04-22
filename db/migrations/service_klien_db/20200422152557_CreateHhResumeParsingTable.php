@@ -1,6 +1,6 @@
 <?php
 
-class CreateResumeParsingsTable extends Ruckusing_Migration_Base
+class CreateHhResumeParsingTable extends Ruckusing_Migration_Base
 {
     public function up()
     {
@@ -12,7 +12,6 @@ class CreateResumeParsingsTable extends Ruckusing_Migration_Base
         $table->column('date', 'datetime');
 
         $table->finish();
-
     }//up()
 
     public function down()

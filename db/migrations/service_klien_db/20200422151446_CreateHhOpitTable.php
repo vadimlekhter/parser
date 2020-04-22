@@ -28,3 +28,4 @@ class CreateHhOpitTable extends Ruckusing_Migration_Base
         $this->drop_table('hh_opit');
     }//down()
 }
+
