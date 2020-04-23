@@ -1,5 +1,5 @@
 #!/bin/bash
-ruckus_dir="./../vendor/ruckusing/ruckusing-migrations"
+ruckus_dir="./vendor/ruckusing/ruckusing-migrations"
 if [ ! -d $ruckus_dir ]; then
     echo "Ruckusing-Migrations wasn't detected. Please, use Composer to install the library."
     exit

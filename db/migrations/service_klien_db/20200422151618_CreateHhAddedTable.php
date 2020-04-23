@@ -8,7 +8,7 @@ class CreateHhAddedTable extends Ruckusing_Migration_Base
 
         $table->column('id_ank', 'integer', array('unsigned' => true));
         $table->column('year', 'string', array('limit' => '16'));
-        $table->column('name', 'string', array('limit' => '128'));
+        $table->column('name', 'string', array('limit' => '256'));
         $table->column('org', 'string', array('limit' => '128'));
         $table->column('spec', 'string', array('limit' => '128'));
 

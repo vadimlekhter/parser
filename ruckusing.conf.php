@@ -6,7 +6,7 @@
 Valid types (adapters) are Postgres & MySQL:
 'type' must be one of: 'pgsql' or 'mysql'
 */
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 return array(
     'db' => array(
@@ -27,8 +27,8 @@ return array(
 //            'password'  => 'root'
 //        )
     ),
-    'migrations_dir' => RUCKUSING_WORKING_BASE . '/migrations',
-    'db_dir' => RUCKUSING_WORKING_BASE . '/utility',
-    'log_dir' => RUCKUSING_WORKING_BASE . '/logs'
+    'migrations_dir' => RUCKUSING_WORKING_BASE . '/db/migrations',
+    'db_dir' => RUCKUSING_WORKING_BASE . '/db/utility',
+    'log_dir' => RUCKUSING_WORKING_BASE . '/db/logs'
 );
 ?>

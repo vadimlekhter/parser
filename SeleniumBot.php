@@ -980,6 +980,13 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         //$f2=iconv("UTF-8", "WINDOWS-1251", $f);
         //file_put_contents()
 
+        $ar['no_anket'] = strpos($f, 'Нет доступа. Пользователь скрыл или удалил это резюме');
+
+        $ar['no_contacts'] = strpos($f, 'Для просмотра скрытых контактов');
+
+
+
+
         $z=explode('<div class="resume-header-name">',$f);
         $body=$z[1];
         $z=explode('</h2>',$body);
@@ -1522,7 +1529,7 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
 
         $this->driver->get($url);
         $s=$this->driver->getPageSource();
-        $fn="files/query".$this->fld.'/hh_query_1.txt';
+        $fn="files/query/".$this->fld.'/hh_query_1.txt';
         file_put_contents($fn, $s);
 
         return $fn;

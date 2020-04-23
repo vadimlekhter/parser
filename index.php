@@ -6,6 +6,14 @@ require "SeleniumBot.php";
 
 function render($ar, $pdo)
 {
+
+    if ($ar['no_anket']) {
+        echo 'Нет доступа. Пользователь скрыл или удалил это резюме.';
+        exit();
+    }
+
+
+
 //    var_dump($ar);exit();
 
     foreach ($ar as $k => $v) {
@@ -38,7 +46,15 @@ function render($ar, $pdo)
 
 
     $pdo->beginTransaction();
+
     try {
+
+        if ($ar['no_contacts']) {
+            echo 'У вас нет доступа к контактным данным в этом резюме.';
+            $no_contacts = 1;
+        } else {
+            $no_contacts = 0;
+        }
 
         //----------------------------------------------------------
 
@@ -83,10 +99,11 @@ function render($ar, $pdo)
         $stmt = $pdo->prepare(
             'INSERT INTO hh_ankets 
 (fio, gender, age, birth, city, phone, email, pref_conn, skype, site, position, activity_field, specialization, cost, 
-occupation, shedule, opit_all, pereezd, comand, dat_update, about, skills, driving, citizen, work_perm, time_to_work)  
+occupation, shedule, opit_all, pereezd, comand, dat_update, about, skills, driving, citizen, work_perm, time_to_work,
+no_contacts)  
 VALUES (:fio, :gender, :age, :birth, :city, :phone, :email, :pref_conn, :skype, :site, :position, :activity_field, 
 :specialization, :cost, :occupation, :shedule, :opit_all, :pereezd, :comand, :dat_update, :about, :skills, :driving,
-:citizen, :work_perm, :time_to_work)'
+:citizen, :work_perm, :time_to_work, :no_contacts)'
         );
         $stmt->execute(
             array(
@@ -116,6 +133,7 @@ VALUES (:fio, :gender, :age, :birth, :city, :phone, :email, :pref_conn, :skype, 
                 'citizen' => $ar['citizen'],
                 'work_perm' => $ar['work_perm'],
                 'time_to_work' => $ar['time_to_work'],
+                'no_contacts' => $no_contacts,
             )
         );
 
@@ -496,7 +514,7 @@ render($ar, $pdo);
 
 ?>
 
-<!--<a href="query.php">Поиск резюме</a>-->
+<a href="query.php">Поиск резюме</a>
 
 <form>
     <h2>Введите URL резюме</h2>
