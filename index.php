@@ -514,7 +514,7 @@ render($ar, $pdo);
 
 ?>
 
-<a href="query.php">Поиск резюме</a>
+<!--<a href="query.php">Поиск резюме</a>-->
 
 <form>
     <h2>Введите URL резюме</h2>
