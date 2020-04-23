@@ -1,5 +1,7 @@
 <?php
 
+require "vendor/autoload.php";
+
 use Facebook\Proxy;
 use Facebook\WebDriver;
 use Facebook\WebDriver\WebDriverBy;
@@ -1521,23 +1523,6 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
     }
 
 
-    public function hh_query ($url) {
-
-        $fld=date('Y-m-d-H-i-s');
-        $this->fld=$fld;
-        mkdir('files/'.$fld,  0777, true);
-
-        $this->driver->get($url);
-        $s=$this->driver->getPageSource();
-        $fn="files/query/".$this->fld.'/hh_query_1.txt';
-        file_put_contents($fn, $s);
-
-        return $fn;
-    }
-
-
-
-
     public function hh_resume($url)
     {
         $this->driver->get($url);
@@ -1641,6 +1626,107 @@ document.getElementsByTagName('head')[0].appendChild(scriptElt);";
         file_put_contents($fn, $s);
 
         return $fn;
+    }
+
+
+    public function hh_query_selenium ($url, $dir, $new_id) {
+//        var_dump($url);
+        $this->driver->get($url);
+        try {
+            $btn = $this->driver->findElement(WebDriverBy::linkText('дальше'));
+//var_dump($btn);
+            $btn->click();
+            $this->driver->wait(5);
+            return $this->driver->getCurrentURL();
+//            $this->screenshot('hh_resume_6');
+//            sleep(2);
+
+        }
+        catch(\Exception $e)
+        {
+            $this->hh_query_parse($dir, $new_id);
+        }
+        return false;
+    }
+
+
+    public function hh_query ($url, $fld, $dir, $new_id, $num=1) {
+        $this->driver->get($url);
+        $s=$this->driver->getPageSource();
+        $fn="files/query/".$fld.'/hh_query_' . $num . '.txt';
+        file_put_contents($fn, $s);
+
+        $next_url = $this->hh_query_selenium ($url, $dir, $new_id);
+        $num++;
+        $this->hh_query($next_url, $fld, $dir, $new_id, $num);
+
+//        return $fn;
+    }
+
+    public function hh_query_parse($dir, $new_id)
+    {
+        $files = scandir($dir);
+        unset($files[0]);
+        unset($files[1]);
+//        var_dump($dir); var_dump($files);
+        $routes = [];
+        foreach ($files as $file) {
+            array_push($routes, $dir . '/' . $file);
+        }
+//var_dump($routes); exit();
+
+        $qu = [];
+
+        foreach ($routes as $route) {
+            $f = file_get_contents($route);
+
+
+            $z = explode('data-qa="resume-serp__results-search"', $f);
+            $body = $z[1];
+            $z = explode('data-qa="pager-block"', $body);
+            $body = $z[0];
+            $z = explode('href="/resume/', $body);
+            unset($z[0]);
+            foreach ($z as $item) {
+                $item = explode('?', $item)[0];
+                array_push($qu, $item);
+            }
+        }
+//        var_dump($qu);
+
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+        $dotenv->load();
+
+        $host = getenv('DB_HOST');
+        $dbname = getenv('DB_NAME');
+        $user = getenv('DB_USER');
+        $pass = getenv('DB_PASS');
+        $charset = getenv('DB_CHARSET');
+
+        $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
+        $opt = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false,
+        ];
+        $pdo = new PDO($dsn, $user, $pass, $opt);
+
+        foreach ($qu as $key=>$value) {
+            $stmt = $pdo->prepare(
+                'INSERT INTO hh_searches 
+(id_query, date , anketa, pos)  
+VALUES (:id_query, :date, :anketa, :pos)'
+            );
+            $stmt->execute(
+                array(
+                    'id_query' => $new_id,
+                    'date' => date("Y-m-d H:i:s"),
+                    'anketa' => $value,
+                    'pos' => $key,
+                )
+            );
+        }
+        exit();
     }
 
 
