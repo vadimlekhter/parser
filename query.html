@@ -25,21 +25,31 @@
 
 
     <h4>Где искать</h4>
-    <span>везде </span>
-    <input data-qa="resumesearch__experience-item resumesearch__experience-item_noExperience" type="checkbox"
-           value="full_text" name="pos" class="bloko-checkbox__input ">
-    <span>в названии резюме </span>
-    <input data-qa="resumesearch__experience-item resumesearch__experience-item_between1And3" type="checkbox"
-           value="position" name="pos" class="bloko-checkbox__input ">
-    <span>в образовании </span>
-    <input data-qa="resumesearch__experience-item resumesearch__experience-item_between3And6" type="checkbox"
-           value="education" name="pos" class="bloko-checkbox__input ">
-    <span>в ключевых навыках </span>
-    <input data-qa="resumesearch__experience-item resumesearch__experience-item_moreThan6" type="checkbox"
-           value="keywords" name="pos" class="bloko-checkbox__input ">
-    <span>в опыте работы </span>
-    <input data-qa="resumesearch__experience-item resumesearch__experience-item_moreThan6" type="checkbox"
-           value="workplaces" name="pos" class="bloko-checkbox__input ">
+    <div>
+        <input data-qa="resumesearch__experience-item resumesearch__experience-item_noExperience" type="radio"
+               value="full_text" name="pos" class="bloko-checkbox__input " checked="">
+        <span>везде </span>
+    </div>
+    <div>
+        <input data-qa="resumesearch__experience-item resumesearch__experience-item_between1And3" type="radio"
+               value="position" name="pos" class="bloko-checkbox__input ">
+        <span>в названии резюме </span>
+    </div>
+    <div>
+        <input data-qa="resumesearch__experience-item resumesearch__experience-item_between3And6" type="radio"
+               value="education" name="pos" class="bloko-checkbox__input ">
+        <span>в образовании </span>
+    </div>
+    <div>
+        <input data-qa="resumesearch__experience-item resumesearch__experience-item_moreThan6" type="radio"
+               value="keywords" name="pos" class="bloko-checkbox__input ">
+        <span>в ключевых навыках </span>
+    </div>
+    <div>
+        <input data-qa="resumesearch__experience-item resumesearch__experience-item_moreThan6" type="radio"
+               value="workplaces" name="pos" class="bloko-checkbox__input ">
+        <span>в опыте работы </span>
+    </div>
 
 
     <h4>Зарплата</h4>
@@ -256,6 +266,122 @@
     <!---->
     <!---->
     <!--    <input type="hidden" name="language" class="HH-LanguageSelect-Value" value="eng.does_not_matter" >-->
+
+    <h4>Период поиска</h4>
+    <div class="bloko-form-item-baseline">
+        <label class="bloko-radio" data-qa="control-vacancysearch__searchperiod-item control-vacancysearch__searchperiod-item_0">
+            <input data-qa="vacancysearch__searchperiod-item vacancysearch__searchperiod-item_0" type="radio" value="0"
+                   name="search_period" class="bloko-radio__input HH-SearchDateIntervals-Select" checked="">
+            <span class="bloko-radio__text">За весь период</span>
+        </label>
+    </div>
+    <div class="bloko-form-item-baseline">
+        <label class="bloko-radio" data-qa="control-vacancysearch__searchperiod-item control-vacancysearch__searchperiod-item_1">
+            <input data-qa="vacancysearch__searchperiod-item vacancysearch__searchperiod-item_1" type="radio" value="1"
+                   name="search_period" class="bloko-radio__input HH-SearchDateIntervals-Select">
+            <span class="bloko-radio__text">За сутки</span>
+        </label></div>
+    <div class="bloko-form-item-baseline">
+        <label class="bloko-radio" data-qa="control-vacancysearch__searchperiod-item control-vacancysearch__searchperiod-item_3">
+            <input data-qa="vacancysearch__searchperiod-item vacancysearch__searchperiod-item_3" type="radio" value="3"
+                   name="search_period" class="bloko-radio__input HH-SearchDateIntervals-Select">
+            <span class="bloko-radio__text">За последние три дня</span>
+        </label>
+    </div>
+    <div class="bloko-form-item-baseline">
+        <label class="bloko-radio" data-qa="control-vacancysearch__searchperiod-item control-vacancysearch__searchperiod-item_7">
+            <input data-qa="vacancysearch__searchperiod-item vacancysearch__searchperiod-item_7" type="radio" value="7"
+                   name="search_period" class="bloko-radio__input HH-SearchDateIntervals-Select">
+            <span class="bloko-radio__text">За неделю</span>
+        </label>
+    </div>
+    <div class="bloko-form-item-baseline">
+        <label class="bloko-radio" data-qa="control-vacancysearch__searchperiod-item control-vacancysearch__searchperiod-item_30">
+            <input data-qa="vacancysearch__searchperiod-item vacancysearch__searchperiod-item_30" type="radio" value="30"
+                   name="search_period" class="bloko-radio__input HH-SearchDateIntervals-Select">
+            <span class="bloko-radio__text">За месяц</span>
+        </label>
+    </div>
+    <div class="bloko-form-item-baseline">
+        <label class="bloko-radio" data-qa="control-vacancysearch__searchperiod-item control-vacancysearch__searchperiod-item_365">
+            <input data-qa="vacancysearch__searchperiod-item vacancysearch__searchperiod-item_365" type="radio" value="365"
+                   name="search_period" class="bloko-radio__input HH-SearchDateIntervals-Select">
+            <span class="bloko-radio__text">За год</span>
+        </label>
+    </div>
+<!--    <div class="bloko-form-item-baseline">-->
+<!--        <label class="bloko-radio" data-qa="control-vacancysearch__searchperiod-item control-vacancysearch__searchperiod-item_-1">-->
+<!--            <input data-qa="vacancysearch__searchperiod-item vacancysearch__searchperiod-item_-1" type="radio" value="-1"-->
+<!--                   name="search_period" class="bloko-radio__input HH-SearchDateIntervals-Select HH-SearchDateIntervals-Select-Custom">-->
+<!--            <span class="bloko-radio__text">За интервал</span>-->
+<!--        </label>-->
+<!--    </div>-->
+
+
+
+<!--    <div class="HH-SearchDateIntervals-Dates g-hidden"><span style="display: inline-block"><script data-name="HH/Bloko/Calendar/Input" data-params="-->
+<!--                {-->
+
+<!--        &quot;translations&quot;: {-->
+<!--            &quot;weekdays&quot;: [-->
+<!--                &quot;пн&quot;,-->
+<!--                &quot;вт&quot;,-->
+<!--                &quot;ср&quot;,-->
+<!--                &quot;чт&quot;,-->
+<!--                &quot;пт&quot;,-->
+<!--                &quot;сб&quot;,-->
+<!--                &quot;вс&quot;-->
+<!--            ],-->
+<!--            &quot;months&quot;: [-->
+<!--                &quot;Январь&quot;,-->
+<!--                &quot;Февраль&quot;,-->
+<!--                &quot;Март&quot;,-->
+<!--                &quot;Апрель&quot;,-->
+<!--                &quot;Май&quot;,-->
+<!--                &quot;Июнь&quot;,-->
+<!--                &quot;Июль&quot;,-->
+<!--                &quot;Август&quot;,-->
+<!--                &quot;Сентябрь&quot;,-->
+<!--                &quot;Октябрь&quot;,-->
+<!--                &quot;Ноябрь&quot;,-->
+<!--                &quot;Декабрь&quot;-->
+<!--            ]-->
+<!--        }-->
+<!--    ,&quot;selectedDate&quot;: &quot;&#45;&#45;&quot;-->
+<!--                }-->
+<!--            "></script><span class="bloko-link-switch HH-BlokoCalendar-Trigger" data-attach="dropdown-trigger">24 апреля 2020</span><input type="hidden" name="date_from" class="HH-BlokoCalendar-Input HH-SearchDateIntervals-Input" disabled="" value="24.04.2020"></span><span>&nbsp;—&nbsp;</span><span style="display: inline-block"><script data-name="HH/Bloko/Calendar/Input" data-params="-->
+<!--                {-->
+
+<!--        &quot;translations&quot;: {-->
+<!--            &quot;weekdays&quot;: [-->
+<!--                &quot;пн&quot;,-->
+<!--                &quot;вт&quot;,-->
+<!--                &quot;ср&quot;,-->
+<!--                &quot;чт&quot;,-->
+<!--                &quot;пт&quot;,-->
+<!--                &quot;сб&quot;,-->
+<!--                &quot;вс&quot;-->
+<!--            ],-->
+<!--            &quot;months&quot;: [-->
+<!--                &quot;Январь&quot;,-->
+<!--                &quot;Февраль&quot;,-->
+<!--                &quot;Март&quot;,-->
+<!--                &quot;Апрель&quot;,-->
+<!--                &quot;Май&quot;,-->
+<!--                &quot;Июнь&quot;,-->
+<!--                &quot;Июль&quot;,-->
+<!--                &quot;Август&quot;,-->
+<!--                &quot;Сентябрь&quot;,-->
+<!--                &quot;Октябрь&quot;,-->
+<!--                &quot;Ноябрь&quot;,-->
+<!--                &quot;Декабрь&quot;-->
+<!--            ]-->
+<!--        }-->
+<!--    ,&quot;selectedDate&quot;: &quot;&#45;&#45;&quot;-->
+<!--                }-->
+<!--            "></script><span class="bloko-link-switch HH-BlokoCalendar-Trigger" data-attach="dropdown-trigger">24 апреля 2020</span><input type="hidden" name="date_to" class="HH-BlokoCalendar-Input HH-SearchDateIntervals-Input" disabled="" value="24.04.2020"></span></div>-->
+
+
 
 
     <p><input type="submit" class="bloko-button bloko-button_large bloko-button_primary bloko-button_stretched"

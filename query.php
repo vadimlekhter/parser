@@ -29,7 +29,7 @@ $request_url = 'https://hh.ru/search/resume?';
 foreach ($_REQUEST as $key=>$value) {
     $request_url .= $key . '=' . $value . '&';
 }
-$request_url = $request_url . 'area=1&items_on_page=100';
+$request_url = $request_url . 'exp_period=all_time&area=1&items_on_page=100';
 
 
 $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
