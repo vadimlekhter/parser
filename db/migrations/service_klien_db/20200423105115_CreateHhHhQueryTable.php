@@ -7,7 +7,7 @@ class CreateHhHhQueryTable extends Ruckusing_Migration_Base
         $table = $this->create_table('hh_query', array('options' => 'ENGINE=InnoDB DEFAULT CHARSET=utf8'));
 
         $table->column('text', 'text');
-        $table->column('url', 'string', array('limit' => '256'));
+        $table->column('url', 'string', array('limit' => '1024'));
         $table->column('date', 'datetime');
 
         $table->finish();

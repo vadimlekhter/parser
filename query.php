@@ -1,9 +1,42 @@
 <form>
     <h4>Поиск по резюме и навыкам</h4>
-    <input type="search" name="text" value="" placeholder="Поиск по резюме и навыкам" autocomplete="off" class="bloko-input
+    <input type="search" name="text" value="" placeholder="Поиск по резюме и навыкам"
+           autocomplete="off" class="bloko-input
                       HH-QueryLength-Observed                       HH-SearchFromSuggest-Suggest
-                                  HH-FirstPageTabs-Vacancies-Keyword
-                                      HH-KeySkillsObserver-PositionInput" data-qa="resumes-search-wizard-item-keyword">
+                      HH-FirstPageTabs-Vacancies-Keyword
+                      HH-KeySkillsObserver-PositionInput" data-qa="resumes-search-wizard-item-keyword">
+
+
+    <h4>Слова</h4>
+    <select class="bloko-select bloko-select_flexible bloko-select_light Bloko-CustomSelect-NativeSelect g-hidden"
+            name="logic">
+        <option value="normal">все слова</option>
+        <option value="any">любое из слов</option>
+        <option value="phrase">точная фраза</option>
+        <option value="except">не встречаются</option>
+    </select>
+
+
+    <h4>Где искать</h4>
+    <span>везде </span>
+    <input data-qa="resumesearch__experience-item resumesearch__experience-item_noExperience" type="checkbox"
+           value="full_text" name="pos" class="bloko-checkbox__input ">
+    <span>в названии резюме </span>
+    <input data-qa="resumesearch__experience-item resumesearch__experience-item_between1And3" type="checkbox"
+           value="position" name="pos" class="bloko-checkbox__input ">
+    <span>в образовании </span>
+    <input data-qa="resumesearch__experience-item resumesearch__experience-item_between3And6" type="checkbox"
+           value="education" name="pos" class="bloko-checkbox__input ">
+    <span>в ключевых навыках </span>
+    <input data-qa="resumesearch__experience-item resumesearch__experience-item_moreThan6" type="checkbox"
+           value="keywords" name="pos" class="bloko-checkbox__input ">
+    <span>в опыте работы </span>
+    <input data-qa="resumesearch__experience-item resumesearch__experience-item_moreThan6" type="checkbox"
+           value="workplaces" name="pos" class="bloko-checkbox__input ">
+
+
+
+
 
 
 
@@ -31,6 +64,15 @@
            value="moreThan6" name="experience" class="bloko-checkbox__input ">
 
 
+
+<!--    <h4>Период поиска</h4>-->
+<!--    <select class="bloko-select bloko-select_flexible bloko-select_light Bloko-CustomSelect-NativeSelect g-hidden"-->
+<!--            name="exp_period">-->
+<!--        <option value="all_time">за всё время опыта</option>-->
+<!--        <option value="last_year">за последний год</option>-->
+<!--        <option value="last_three_years">за последние 3 года</option>-->
+<!--        <option value="last_six_years">за последние 6 лет</option>-->
+<!--    </select>-->
 
 
 
@@ -229,11 +271,15 @@
 
 </form>
 
+
 <?php
 require "vendor/autoload.php";
 require "Common.php";
 require "CommonBot.php";
 require "SeleniumBot.php";
+
+set_time_limit(0);
+error_reporting(1 );
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
@@ -244,13 +290,6 @@ $user = getenv('DB_USER');
 $pass = getenv('DB_PASS');
 $charset = getenv('DB_CHARSET');
 
-$dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
-$opt = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES => false,
-];
-$pdo = new PDO($dsn, $user, $pass, $opt);
 
 $request_text = $_REQUEST;
 foreach ($request_text as $key=>$value) {
@@ -260,10 +299,23 @@ foreach ($request_text as $key=>$value) {
 }
 $request_text = json_encode($request_text);
 
+var_dump($request_text);
+
 $request_url = 'https://hh.ru/search/resume?';
 foreach ($_REQUEST as $key=>$value) {
     $request_url .= $key . '=' . $value . '&';
 }
+$request_url = $request_url . 'area=1&items_on_page=100';
+
+if ($request_text != '[]') {
+
+$dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
+$opt = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES => false,
+];
+$pdo = new PDO($dsn, $user, $pass, $opt);
 
 $stmt = $pdo->prepare(
     'INSERT INTO hh_query 
@@ -284,13 +336,6 @@ $db= 1;
 $params['db']=$db;
 $params['id_bot']=1;
 
-$request_url = 'https://hh.ru/search/resume?';
-foreach ($_REQUEST as $key=>$value) {
-    $request_url .= $key . '=' . $value . '&';
-}
-$request_url = $request_url . 'area=1&items_on_page=100';
-//var_dump($request_url);
-
 $fld=date('Y-m-d-H-i-s');
 mkdir('files/query/'.$fld,  0777, true);
 $dir = 'files/query/'.$fld;
@@ -299,3 +344,4 @@ $z = new SeleniumBot($params);
 $fn=$z->hh_query($request_url, $fld, $dir, $new_id);
 //$fn='files/query/2020-04-23-15-06-46/hh_query_1.txt';
 //$ar=$z->hh_query_parse($dir);
+}
