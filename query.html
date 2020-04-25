@@ -5,6 +5,119 @@
     <title>Query</title>
 </head>
 <body>
+<script src="jquery.js"></script>
+<script>
+
+    $( document ).ready(function() {
+        let pos_full_text = $('[data-qa="resumes-search-wizard-pos-full_text"]');
+        let pos_position = $('[data-qa="resumes-search-wizard-pos-position"]');
+        let pos_education = $('[data-qa="resumes-search-wizard-pos-education"]');
+        let pos_keywords = $('[data-qa="resumes-search-wizard-pos-keywords"]');
+        let pos_workplaces = $('[data-qa="resumes-search-wizard-pos-workplaces"]');
+        let pos_workplace_organization = $('[data-qa="resumes-search-wizard-pos-workplace_organization"]');
+        let pos_workplace_position = $('[data-qa="resumes-search-wizard-pos-workplace_position"]');
+        let pos_workplace_description = $('[data-qa="resumes-search-wizard-pos-workplace_description"]');
+       // if (pos_position.prop('checked') || pos_education.prop('checked') || pos_keywords.prop('checked') ||
+       //     pos_workplaces.prop('checked')) {
+       //     pos_full_text.removeAttr("checked");
+       // }
+       //  console.log(pos_full_text.prop('checked'));
+        pos_full_text.click(function(){
+            pos_position.prop('checked', false);
+            pos_education.prop('checked', false);
+            pos_keywords.prop('checked', false);
+            pos_workplaces.prop('checked', false);
+            pos_workplace_organization.prop('checked', false);
+            pos_workplace_position.prop('checked', false);
+            pos_workplace_description.prop('checked', false);
+        });
+        pos_position.click(function(){
+            if ($(this).is(':checked') && pos_education.is(':checked') && pos_keywords.is(':checked') &&
+                pos_workplaces.is(':checked')) {
+                pos_full_text.prop('checked', true);
+                pos_position.prop('checked', false);
+                pos_education.prop('checked', false);
+                pos_keywords.prop('checked', false);
+                pos_workplaces.prop('checked', false);
+                pos_workplace_organization.prop('checked', false);
+                pos_workplace_position.prop('checked', false);
+                pos_workplace_description.prop('checked', false);
+            } else {
+                pos_full_text.prop('checked', false);
+            }
+
+        });
+        pos_education.click(function(){
+            if ($(this).is(':checked') && pos_position.is(':checked') && pos_keywords.is(':checked') &&
+                pos_workplaces.is(':checked')) {
+                pos_full_text.prop('checked', true);
+                pos_position.prop('checked', false);
+                pos_education.prop('checked', false);
+                pos_keywords.prop('checked', false);
+                pos_workplaces.prop('checked', false);
+                pos_workplace_organization.prop('checked', false);
+                pos_workplace_position.prop('checked', false);
+                pos_workplace_description.prop('checked', false);
+            } else {
+                pos_full_text.prop('checked', false);
+            }
+
+        });
+        pos_keywords.click(function(){
+            if ($(this).is(':checked') && pos_position.is(':checked') && pos_education.is(':checked') &&
+                pos_workplaces.is(':checked')) {
+                pos_full_text.prop('checked', true);
+                pos_position.prop('checked', false);
+                pos_education.prop('checked', false);
+                pos_keywords.prop('checked', false);
+                pos_workplaces.prop('checked', false);
+                pos_workplace_organization.prop('checked', false);
+                pos_workplace_position.prop('checked', false);
+                pos_workplace_description.prop('checked', false);
+            } else {
+                pos_full_text.prop('checked', false);
+            }
+
+        });
+        pos_workplaces.click(function () {
+            if ($(this).is(':checked') && pos_position.is(':checked') && pos_education.is(':checked') &&
+                pos_keywords.is(':checked')) {
+                pos_full_text.prop('checked', true);
+                pos_position.prop('checked', false);
+                pos_education.prop('checked', false);
+                pos_keywords.prop('checked', false);
+                pos_workplaces.prop('checked', false);
+                pos_workplace_organization.prop('checked', false);
+                pos_workplace_position.prop('checked', false);
+                pos_workplace_description.prop('checked', false);
+            } else {
+                pos_full_text.prop('checked', false);
+            }
+
+            if ($(this).is(':checked')) {
+                pos_workplace_organization.prop('checked', true);
+                pos_workplace_position.prop('checked', true);
+                pos_workplace_description.prop('checked', true);
+            } else {
+                pos_workplace_organization.prop('checked', false);
+                pos_workplace_position.prop('checked', false);
+                pos_workplace_description.prop('checked', false);
+            }
+
+        });
+
+        pos_workplace_organization.click(function(){
+            pos_workplace_organization.prop('checked', false);
+        });
+        pos_workplace_position.click(function(){
+            pos_full_text.prop('checked', false);
+        });
+        pos_workplace_description.click(function(){
+            pos_full_text.prop('checked', false);
+        });
+    });
+
+</script>
 <form action="query.php">
     <h4>Поиск по резюме и навыкам</h4>
     <input type="search" name="text" value="" placeholder="Поиск по резюме и навыкам"
@@ -26,31 +139,39 @@
 
     <h4>Где искать</h4>
     <div>
-        <input data-qa="resumesearch__experience-item resumesearch__experience-item_noExperience" type="radio"
-               value="full_text" name="pos" class="bloko-checkbox__input " checked="">
+        <input data-qa="resumes-search-wizard-pos-full_text" type="checkbox"
+               value="full_text" name="pos[]" class="bloko-checkbox__input " checked="">
         <span>везде </span>
     </div>
     <div>
-        <input data-qa="resumesearch__experience-item resumesearch__experience-item_between1And3" type="radio"
-               value="position" name="pos" class="bloko-checkbox__input ">
+        <input data-qa="resumes-search-wizard-pos-position" type="checkbox"
+               value="position" name="pos[]" class="bloko-checkbox__input ">
         <span>в названии резюме </span>
     </div>
     <div>
-        <input data-qa="resumesearch__experience-item resumesearch__experience-item_between3And6" type="radio"
-               value="education" name="pos" class="bloko-checkbox__input ">
+        <input data-qa="resumes-search-wizard-pos-education" type="checkbox"
+               value="education" name="pos[]" class="bloko-checkbox__input ">
         <span>в образовании </span>
     </div>
     <div>
-        <input data-qa="resumesearch__experience-item resumesearch__experience-item_moreThan6" type="radio"
-               value="keywords" name="pos" class="bloko-checkbox__input ">
+        <input data-qa="resumes-search-wizard-pos-keywords" type="checkbox"
+               value="keywords" name="pos[]" class="bloko-checkbox__input ">
         <span>в ключевых навыках </span>
     </div>
     <div>
-        <input data-qa="resumesearch__experience-item resumesearch__experience-item_moreThan6" type="radio"
-               value="workplaces" name="pos" class="bloko-checkbox__input ">
+        <input data-qa="resumes-search-wizard-pos-workplaces" type="checkbox"
+               value="workplaces" name="pos[]" class="bloko-checkbox__input ">
         <span>в опыте работы </span>
     </div>
-
+    <input class="bloko-checkbox__input HH-Search-ShowToggleSelect-Input" value="workplace_organization" name="pos[]"
+           type="checkbox" data-qa="resumes-search-wizard-pos-workplace_organization">
+    <span>	в компаниях и отраслях</span>
+    <input class="bloko-checkbox__input HH-Search-ShowToggleSelect-Input" value="workplace_position" name="pos[]"
+           type="checkbox" data-qa="resumes-search-wizard-pos-workplace_position">
+    <span>	в должностях</span>
+    <input class="bloko-checkbox__input HH-Search-ShowToggleSelect-Input" value="workplace_description" name="pos[]"
+           type="checkbox" data-qa="resumes-search-wizard-pos-workplace_description">
+    <span>	в обязанностях</span>
 
     <h4>Зарплата</h4>
     <span>От </span>

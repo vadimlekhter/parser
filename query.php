@@ -19,18 +19,29 @@ $charset = getenv('DB_CHARSET');
 
 $request_text = $_REQUEST;
 foreach ($request_text as $key=>$value) {
-    if (empty($value)) {
+    if ($value=='') {
         unset($request_text[$key]);
     }
+    if (is_array($value)) {
+        if ($key == 'pos') {
+            if (in_array('workplace_organization', $value) || in_array('workplace_position', $value) ||
+                in_array('workplace_description', $value)) {
+                unset($value[array_search('workplaces',$value)]);
+            }
+        }
+        $request_text[$key] = implode('%2C', $value);
+    }
 }
-$request_text = json_encode($request_text);
-
 $request_url = 'https://hh.ru/search/resume?';
-foreach ($_REQUEST as $key=>$value) {
+
+foreach ($request_text as $key=>$value) {
     $request_url .= $key . '=' . $value . '&';
 }
-$request_url = $request_url . 'exp_period=all_time&area=1&items_on_page=100';
 
+$request_url = $request_url . 'exp_period=all_time&area=1&items_on_page=100';
+$request_text = json_encode($request_text);
+
+var_dump($request_url);
 
 $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
 $opt = [
