@@ -38,10 +38,10 @@ foreach ($request_text as $key=>$value) {
     $request_url .= $key . '=' . $value . '&';
 }
 
-$request_url = $request_url . 'exp_period=all_time&area=1&items_on_page=100';
+$request_url = $request_url . 'area=1&items_on_page=100';
 $request_text = json_encode($request_text);
 
-var_dump($request_url);
+//var_dump($request_url);
 
 $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
 $opt = [
@@ -78,3 +78,4 @@ $z = new SeleniumBot($params);
 $fn=$z->hh_query($request_url, $fld, $dir, $new_id);
 //$fn='files/query/2020-04-23-15-06-46/hh_query_1.txt';
 //$ar=$z->hh_query_parse($dir);
+

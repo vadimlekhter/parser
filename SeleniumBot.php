@@ -1726,6 +1726,7 @@ VALUES (:id_query, :date, :anketa, :pos)'
                 )
             );
         }
+        header ('Location: query.html');
         exit();
     }
 

@@ -5,8 +5,8 @@
     <title>Query</title>
 </head>
 <body>
-<script src="jquery.js"></script>
-<script src="pos.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/pos.js"></script>
 
 <form action="query.php">
     <h4>Поиск по резюме и навыкам</h4>
@@ -62,6 +62,60 @@
     <input class="bloko-checkbox__input HH-Search-ShowToggleSelect-Input" value="workplace_description" name="pos[]"
            type="checkbox" data-qa="resumes-search-wizard-pos-workplace_description">
     <span>	в обязанностях</span>
+
+
+    <div class="workplace_extra" style="display: none">
+        <h4>Опыт работы</h4>
+        <div>
+            <span>за все время опыта </span>
+            <input data-qa="resumes-search-wizard-exp_period-all_time" type="radio"
+                   value="all_time" name="exp_period" class="bloko-radio__input HH-GenderInputs-Field" checked="">
+        </div>
+        <div>
+            <span>за последний год </span>
+            <input data-qa="resumes-search-wizard-exp_period-last_year" type="radio"
+                   value="last_year" name="exp_period" class="bloko-radio__input HH-GenderInputs-Field">
+        </div>
+        <div>
+            <span>за последние 3 года </span>
+            <input data-qa="resumes-search-wizard-exp_period-last_three_years" type="radio"
+                   value="last_three_years" name="exp_period" class="bloko-radio__input HH-GenderInputs-Field">
+        </div>
+        <div>
+            <span>за последние 6 лет </span>
+            <input data-qa="resumes-search-wizard-exp_period-last_six_years" type="radio"
+                   value="last_six_years" name="exp_period" class="bloko-radio__input HH-GenderInputs-Field">
+        </div>
+
+        <h4>Размер компании</h4>
+        <div>
+            <span>в компаниях любого размера </span>
+            <input data-qa="resumes-search-wizard-exp_company_size-any" type="radio"
+                   value="any" name="exp_company_size" class="bloko-radio__input HH-GenderInputs-Field" checked="">
+        </div>
+        <div>
+            <span>в небольших компаниях до 100 чел. </span>
+            <input data-qa="resumes-search-wizard-exp_company_size-small" type="radio"
+                   value="small" name="exp_company_size" class="bloko-radio__input HH-GenderInputs-Field">
+        </div>
+        <div>
+            <span>в компаниях среднего размера до 500 чел. </span>
+            <input data-qa="resumes-search-wizard-exp_company_size-medium" type="radio"
+                   value="medium" name="exp_company_size" class="bloko-radio__input HH-GenderInputs-Field">
+        </div>
+        <div>
+            <span>в крупных компаниях от 500 чел. </span>
+            <input data-qa="resumes-search-wizard-exp_company_size-large" type="radio"
+                   value="large" name="exp_company_size" class="bloko-radio__input HH-GenderInputs-Field">
+        </div>
+    </div>
+
+
+
+
+
+
+
 
     <h4>Зарплата</h4>
     <span>От </span>
