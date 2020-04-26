@@ -16,22 +16,36 @@ $user = getenv('DB_USER');
 $pass = getenv('DB_PASS');
 $charset = getenv('DB_CHARSET');
 
-
 $request_text = $_REQUEST;
-foreach ($request_text as $key=>$value) {
-    if ($value=='') {
+foreach ($request_text as $key => $value) {
+    if ($value == '') {
         unset($request_text[$key]);
     }
     if (is_array($value)) {
         if ($key == 'pos') {
-            if (in_array('workplace_organization', $value) || in_array('workplace_position', $value) ||
+            if (in_array('workplace_organization', $value) && in_array('workplace_position', $value) &&
                 in_array('workplace_description', $value)) {
-                unset($value[array_search('workplaces',$value)]);
+                unset($request_text[$key][array_search('workplace_organization', $value)]);
+                unset($request_text[$key][array_search('workplace_position', $value)]);
+                unset($request_text[$key][array_search('workplace_description', $value)]);
+            } elseif (in_array('workplace_organization', $value) || in_array('workplace_position', $value)
+                || in_array('workplace_description', $value)) {
+                unset($request_text[$key][array_search('workplaces', $value)]);
             }
+            $request_text[$key] = implode('%2C', $request_text[$key]);
         }
-        $request_text[$key] = implode('%2C', $value);
+        if ($key == 'label') {
+            $temp = $value[0];
+            foreach ($value as $index => $item) {
+                if ($index != 0) {
+                    $temp .= '&label=' . $item;
+                }
+            }
+            $request_text[$key] = $temp;
+        }
     }
 }
+
 $request_url = 'https://hh.ru/search/resume?';
 
 foreach ($request_text as $key=>$value) {
@@ -40,8 +54,6 @@ foreach ($request_text as $key=>$value) {
 
 $request_url = $request_url . 'area=1&items_on_page=100';
 $request_text = json_encode($request_text);
-
-//var_dump($request_url);
 
 $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
 $opt = [

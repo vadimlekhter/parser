@@ -110,8 +110,11 @@
         </div>
     </div>
 
-
-
+    <div style="margin-top: 30px">
+        <input value="true" name="search_in_responses"
+               type="checkbox">
+        <span>Искать в откликах и приглашениях</span>
+    </div>
 
 
 
@@ -124,6 +127,14 @@
     <span>До </span>
     <input data-name="salary_to" name="salary_to" value="" class="Bloko-FormattedNumericInput-Hidden
     HH-Search-MoneyInput-Input">
+
+    <div style="margin-top: 30px">
+        <input value="only_with_salary" name="label[]"
+               type="checkbox">
+        <span>Не показывать резюме без зарплаты</span>
+    </div>
+
+
 
     <h4>Требуемый опыт работы</h4>
     <span>Нет опыта </span>
@@ -224,7 +235,7 @@
 
     <h4>Личный автомобиль</h4>
     <input data-qa="resumesearch__label resumesearch__label_only_with_vehicle" type="checkbox"
-           value="only_with_vehicle" name="label" class="bloko-checkbox__input ">
+           value="only_with_vehicle" name="label[]" class="bloko-checkbox__input ">
 
 
     <h4>Категория прав</h4>
