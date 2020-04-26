@@ -176,13 +176,27 @@
     </select>
 
 
-    <h4>Возраст</h4>
+    <h4>Возраст и фотография</h4>
     <span>От </span>
     <input name="age_from" value="" class="bloko-input                           bloko-input_sized
     HH-AgeSelect-From" size="5" type="text" data-qa="resumes-search-age_from">
     <span>До </span>
     <input name="age_to" value="" class="bloko-input                           bloko-input_sized
     HH-AgeSelect-To" size="5" type="text" data-qa="resumes-search-age_to">
+
+
+    <div style="margin-top: 30px">
+        <input value="only_with_age" name="label[]"
+               type="checkbox">
+        <span>Не показывать резюме без указания возраста</span>
+    </div>
+
+    <div style="margin-top: 30px">
+        <input value="only_with_photo" name="label[]"
+               type="checkbox">
+        <span>Только с фотографией</span>
+    </div>
+
 
 
     <h4>Пол</h4>
