@@ -17,7 +17,7 @@ $( document ).ready(function() {
     let exp_company_size_small = $('[data-qa="resumes-search-wizard-exp_company_size-small"]');
     let exp_company_size_medium = $('[data-qa="resumes-search-wizard-exp_company_size-medium"]');
     let exp_company_size_large = $('[data-qa="resumes-search-wizard-exp_company_size-large"]');
-
+    let search_industry = $('.search-industry');
 
 
 
@@ -116,8 +116,10 @@ $( document ).ready(function() {
         }
         if ($(this).is(':checked')) {
             workplace_extra.show();
+            search_industry.show();
         } else {
             workplace_extra.hide();
+            search_industry.hide();
             exp_period_all_time.prop('checked', true);
             exp_period_last_year.prop('checked', false);
             exp_period_last_three_years.prop('checked', false);
@@ -143,9 +145,11 @@ $( document ).ready(function() {
         }
         if ($(this).is(':checked')) {
             workplace_extra.show();
+            search_industry.show();
         } else {
             if (!pos_workplaces.is(':checked')) {
                 workplace_extra.hide();
+                search_industry.hide();
                 exp_period_all_time.prop('checked', true);
                 exp_period_last_year.prop('checked', false);
                 exp_period_last_three_years.prop('checked', false);
@@ -169,9 +173,11 @@ $( document ).ready(function() {
         }
         if ($(this).is(':checked')) {
             workplace_extra.show();
+            search_industry.show();
         }  else {
             if (!pos_workplaces.is(':checked')) {
                 workplace_extra.hide();
+                search_industry.hide();
                 exp_period_all_time.prop('checked', true);
                 exp_period_last_year.prop('checked', false);
                 exp_period_last_three_years.prop('checked', false);
@@ -195,9 +201,11 @@ $( document ).ready(function() {
         }
         if ($(this).is(':checked')) {
             workplace_extra.show();
+            search_industry.show();
         }  else {
             if (!pos_workplaces.is(':checked')) {
                 workplace_extra.hide();
+                search_industry.hide();
                 exp_period_all_time.prop('checked', true);
                 exp_period_last_year.prop('checked', false);
                 exp_period_last_three_years.prop('checked', false);

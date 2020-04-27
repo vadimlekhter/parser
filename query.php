@@ -43,6 +43,23 @@ foreach ($request_text as $key => $value) {
             }
             $request_text[$key] = $temp;
         }
+        if ($key == 'exp_industry') {
+            $a = [];
+            foreach ($value as $item) {
+                if (strpos($item, '.')) {
+                    $b = explode('.', $item);
+                    array_push($a, $b[0]);
+                }
+            }
+            foreach ($a as $item) {
+                if (array_search($item, $value) !== false) {
+                    unset($request_text[$key][array_search($item, $value)]);
+                }
+            }
+            var_dump($request_text);
+            $request_text[$key] = implode('%2C', $request_text[$key]);
+            var_dump($request_text[$key]);
+        }
     }
 }
 
@@ -53,7 +70,9 @@ foreach ($request_text as $key=>$value) {
 }
 
 $request_url = $request_url . 'area=1&items_on_page=100';
+
 $request_text = json_encode($request_text);
+
 
 $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
 $opt = [
