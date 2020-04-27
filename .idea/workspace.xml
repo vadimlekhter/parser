@@ -1,68 +1,551 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f519584-373f-4ea3-a659-a75f10864e95" name="Default Changelist" comment="">
+    <list default="true" id="021148b3-17eb-433c-81be-e3fa6e0df3a7" name="Default Changelist" comment="Добавлено Отрасль в поиске по резюме и навыкам">
+      <change afterPath="$PROJECT_DIR$/.idea/hhparser.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/hh.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/.coveralls.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/.php_cs.dist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/CODE_OF_CONDUCT.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/CONTRIBUTING.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/ISSUE_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/composer.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/AbstractWebDriverCheckboxOrRadio.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Chrome/ChromeDriver.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Chrome/ChromeDriverService.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Chrome/ChromeOptions.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Cookie.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/ElementNotSelectableException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/ElementNotVisibleException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/ExpectedException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/IMEEngineActivationFailedException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/IMENotAvailableException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/IndexOutOfBoundsException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/InvalidCookieDomainException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/InvalidCoordinatesException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/InvalidElementStateException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/InvalidSelectorException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/MoveTargetOutOfBoundsException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/NoAlertOpenException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/NoCollectionException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/NoScriptResultException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/NoStringException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/NoStringLengthException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/NoStringWrapperException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/NoSuchCollectionException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/NoSuchDocumentException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/NoSuchDriverException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/NoSuchElementException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/NoSuchFrameException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/NoSuchWindowException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/NullPointerException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/ScriptTimeoutException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/SessionNotCreatedException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/StaleElementReferenceException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/TimeOutException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/UnableToSetCookieException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/UnexpectedAlertOpenException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/UnexpectedJavascriptException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/UnexpectedTagNameException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/UnknownCommandException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/UnknownServerException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/UnrecognizedExceptionException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/UnsupportedOperationException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/WebDriverCurlException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/WebDriverException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Exception/XPathLookupException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Firefox/FirefoxDriver.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Firefox/FirefoxPreferences.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Firefox/FirefoxProfile.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Internal/WebDriverButtonReleaseAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Internal/WebDriverClickAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Internal/WebDriverClickAndHoldAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Internal/WebDriverContextClickAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Internal/WebDriverCoordinates.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Internal/WebDriverDoubleClickAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Internal/WebDriverKeyDownAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Internal/WebDriverKeyUpAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Internal/WebDriverKeysRelatedAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Internal/WebDriverMouseAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Internal/WebDriverMouseMoveAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Internal/WebDriverMoveToOffsetAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Internal/WebDriverSendKeysAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Internal/WebDriverSingleKeyAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Touch/WebDriverDoubleTapAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Touch/WebDriverDownAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Touch/WebDriverFlickAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Touch/WebDriverFlickFromElementAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Touch/WebDriverLongPressAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Touch/WebDriverMoveAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Touch/WebDriverScrollAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Touch/WebDriverScrollFromElementAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Touch/WebDriverTapAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Touch/WebDriverTouchAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/Touch/WebDriverTouchScreen.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/WebDriverActions.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/WebDriverCompositeAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Interactions/WebDriverTouchActions.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Internal/WebDriverLocatable.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/JavaScriptExecutor.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Net/URLChecker.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/DesiredCapabilities.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/DriverCommand.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/ExecuteMethod.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/FileDetector.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/HttpCommandExecutor.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/LocalFileDetector.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/RemoteExecuteMethod.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/RemoteKeyboard.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/RemoteMouse.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/RemoteTargetLocator.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/RemoteTouchScreen.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/RemoteWebDriver.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/RemoteWebElement.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/Service/DriverCommandExecutor.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/Service/DriverService.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/UselessFileDetector.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/WebDriverBrowserType.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/WebDriverCapabilityType.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/WebDriverCommand.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Remote/WebDriverResponse.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Support/Events/EventFiringWebDriver.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Support/Events/EventFiringWebDriverNavigation.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Support/Events/EventFiringWebElement.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/Support/XPathEscaper.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriver.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverAlert.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverBy.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverCapabilities.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverCheckboxes.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverCommandExecutor.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverDimension.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverDispatcher.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverElement.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverEventListener.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverExpectedCondition.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverHasInputDevices.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverKeyboard.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverKeys.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverMouse.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverNavigation.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverOptions.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverPlatform.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverPoint.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverRadios.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverSearchContext.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverSelect.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverSelectInterface.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverTargetLocator.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverTimeouts.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverUpAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverWait.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/lib/WebDriverWindow.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/facebook/webdriver/phpstan.neon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/Exception/ExceptionInterface.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/Exception/InvalidArgumentException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/Exception/LogicException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/Exception/ProcessFailedException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/Exception/ProcessSignaledException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/Exception/ProcessTimedOutException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/Exception/RuntimeException.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/ExecutableFinder.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/InputStream.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/PhpExecutableFinder.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/PhpProcess.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/Pipes/AbstractPipes.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/Pipes/PipesInterface.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/Pipes/UnixPipes.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/Pipes/WindowsPipes.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/Process.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/ProcessUtils.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/symfony/process/composer.json" beforeDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
-    <execution>
-      <executable />
-    </execution>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1ZUWCSjc4ZvFvsN0BinrahDc7ZY" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/facebook/webdriver" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/vendor/ruckusing/ruckusing-migrations" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1ZwgsX5JJInNprBo1HC6ZpZEiVk" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../jirareport" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\hhparser\js" />
+      <recent name="C:\OSPanel\domains\hhparser" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\hhparser\migrations\service_klien_db" />
+      <recent name="C:\OSPanel\domains\hhparser" />
+      <recent name="C:\OSPanel\domains\hhparser\db\migrations" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9f519584-373f-4ea3-a659-a75f10864e95" name="Default Changelist" comment="" />
-      <created>1584894025024</created>
+      <changelist id="021148b3-17eb-433c-81be-e3fa6e0df3a7" name="Default Changelist" comment="" />
+      <created>1585755777997</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1584894025024</updated>
-      <workItem from="1584894026868" duration="10186000" />
+      <updated>1585755777997</updated>
+      <workItem from="1585755780363" duration="13503000" />
+      <workItem from="1585820472961" duration="33000" />
+      <workItem from="1585847324901" duration="29805000" />
+      <workItem from="1586018225238" duration="1201000" />
+      <workItem from="1586106821946" duration="27202000" />
+      <workItem from="1586246668737" duration="679000" />
+      <workItem from="1586417974130" duration="22216000" />
+      <workItem from="1586762666837" duration="98361000" />
+      <workItem from="1586965988608" duration="1816000" />
+      <workItem from="1587028434425" duration="479000" />
+      <workItem from="1587366866700" duration="149983000" />
     </task>
+    <task id="LOCAL-00001" summary="Добавлен номер телефона, дата обновления резюме и сфера деятельности компании из опыта работы.">
+      <created>1585765197865</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1585765197866</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Добавлен подраздел $pod_ind - отрасль промышленности в опыте работы.">
+      <created>1585903793495</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1585903793496</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Добавлены: сфера деятельности, специализация, зантость, график работы, ключевые навыки, опыт вождения, высшее образование, знание языков, гражданство, разрешение на работу, желательное время в пути до работы.">
+      <created>1585928789250</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1585928789250</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Добавлены: &quot;Повышение квалификации, курсы&quot;, &quot;Тесты, экзамены&quot;. &#10;Изменены: &quot;Опыт вождения&quot;, &quot;Высшее образование&quot;, &quot;Знание языков&quot; - получение и вывод в количестве больше одного.">
+      <created>1586189725662</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1586189725662</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Добавлено: в контакты - предпочтительный способ связи, сайт. Портфолио.&#10;Повышение квалификации, образование, тесты, сертификаты - разбито на составляющие.">
+      <created>1586447379373</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1586447379373</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Поменял резюме из файла на резюме из интернета.">
+      <created>1586448386193</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1586448386193</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Работа над комментариями и историей.">
+      <created>1586962162147</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1586962162147</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Работа с коммментариями и историей.">
+      <created>1586964922377</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1586964922377</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Убрано Показать всю историю при парсинге. &#10;$hist_date=str_replace('Показать всю историю','', $hist_date);">
+      <created>1587028883722</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1587028883723</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Удалена часть закомментированного.">
+      <created>1587373458442</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1587373458442</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Внесение в БД полученных данных.">
+      <created>1587398839877</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1587398839877</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Добавлен .env для БД.&#10;Созданы миграции для БД (ruckusing).&#10;Создан README.MD">
+      <created>1587486454835</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1587486454835</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Добавлен ввод логина и пароля с сохранением в БД.">
+      <created>1587564300938</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1587564300938</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Изменена БД на service_klien_db, поправлен .env.example">
+      <created>1587569777812</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1587569777812</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Добавлена проверка существования резюме и проверка доступа к контактным данным резюме.&#10;Изменена структура Ruckusing Migrations, ruckus и ruckusing.conf.php вынесены из папки db в корень.">
+      <created>1587634278010</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1587634278010</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Закомментирована ссылка на поиск.">
+      <created>1587634356697</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1587634356697</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Поиск резюме по нескольким парамерам, запись в БД запроса и результатов поиска.">
+      <created>1587656849256</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1587656849256</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Добавлена проверка существования резюме и проверка доступа к контактным данным резюме.">
+      <created>1587656899092</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1587656899092</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Добавлена поиск текста с указанием места поиска. &#10;Убрано ограничение работы скрипта по времени.">
+      <created>1587742440102</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1587742440102</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Разнесен html и php.">
+      <created>1587747452862</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1587747452862</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Добавлен период поиска.">
+      <created>1587750580373</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1587750580373</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Добавлен jquery и модифицирован раздел Где искать под hh.ru">
+      <created>1587824181175</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1587824181198</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Отдельный pos.js">
+      <created>1587826676233</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1587826676233</updated>
+    </task>
+    <task id="LOCAL-00024" summary="js файлы вынесены в директорию js. &#10;Добавлен выбор длительности опыта работы и выбор размера компании при поиске слов в опыте работы.">
+      <created>1587896934530</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1587896934530</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Добавлено Искать в откликах и предложениях и Не показывать резюме без зарплаты.">
+      <created>1587904578350</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1587904578350</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Добавлено Не показывать резюме без указания возраста и Только с фотографией.">
+      <created>1587905993882</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1587905993882</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Добавлено Отрасль в поиске по резюме и навыкам">
+      <created>1588001676198</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1588001676198</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Добавлены: сфера деятельности, специализация, зантость, график работы, ключевые навыки, опыт вождения, высшее образование, знание языков, гражданство, разрешение на работу, желательное время в пути до работы." />
+    <MESSAGE value="Добавлены: &quot;Повышение квалификации, курсы&quot;, &quot;Тесты, экзамены&quot;. &#10;Изменены: &quot;Опыт вождения&quot;, &quot;Высшее образование&quot;, &quot;Знание языков&quot; - получение и вывод в количестве больше одного." />
+    <MESSAGE value="Добавлено: в контакты - предпочтительный способ связи, сайт. Портфолио.&#10;Повышение квалификации, образование, тесты, сертификаты - разбито на составляющие." />
+    <MESSAGE value="Поменял резюме из файла на резюме из интернета." />
+    <MESSAGE value="Работа над комментариями и историей." />
+    <MESSAGE value="Работа с коммментариями и историей." />
+    <MESSAGE value="Убрано Показать всю историю при парсинге. &#10;$hist_date=str_replace('Показать всю историю','', $hist_date);" />
+    <MESSAGE value="Удалена часть закомментированного." />
+    <MESSAGE value="Внесение в БД полученных данных." />
+    <MESSAGE value="Добавлен .env для БД.&#10;Созданы миграции для БД (ruckusing).&#10;Создан README.MD" />
+    <MESSAGE value="Добавлен ввод логина и пароля с сохранением в БД." />
+    <MESSAGE value="Изменена БД на service_klien_db, поправлен .env.example" />
+    <MESSAGE value="Добавлена проверка существования резюме и проверка доступа к контактным данным резюме.&#10;Изменена структура Ruckusing Migrations, ruckus и ruckusing.conf.php вынесены из папки db в корень." />
+    <MESSAGE value="Закомментирована ссылка на поиск." />
+    <MESSAGE value="Поиск резюме по нескольким парамерам, запись в БД запроса и результатов поиска." />
+    <MESSAGE value="Добавлена проверка существования резюме и проверка доступа к контактным данным резюме." />
+    <MESSAGE value="Добавлена поиск текста с указанием места поиска. &#10;Убрано ограничение работы скрипта по времени." />
+    <MESSAGE value="Разнесен html и php." />
+    <MESSAGE value="Добавлен период поиска." />
+    <MESSAGE value="Добавлен jquery и модифицирован раздел Где искать под hh.ru" />
+    <MESSAGE value="Отдельный pos.js" />
+    <MESSAGE value="js файлы вынесены в директорию js. &#10;Добавлен выбор длительности опыта работы и выбор размера компании при поиске слов в опыте работы." />
+    <MESSAGE value="Добавлено Искать в откликах и предложениях и Не показывать резюме без зарплаты." />
+    <MESSAGE value="Добавлено Не показывать резюме без указания возраста и Только с фотографией." />
+    <MESSAGE value="Добавлено Отрасль в поиске по резюме и навыкам" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлено Отрасль в поиске по резюме и навыкам" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="567" y="231" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587378227654">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="567" y="231" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1600.860@0.0.1600.860" timestamp="1587378227654" />
+    <state x="480" y="169" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1586965204434">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="480" y="169" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1600.860@0.0.1600.860" timestamp="1586965204434" />
+    <state x="530" y="184" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1587478665532">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="530" y="184" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1587478665532" />
+    <state x="488" y="0" key="CommitChangelistDialog2" timestamp="1588001668732">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="488" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1588001668732" />
+    <state x="581" y="188" key="FileChooserDialogImpl" timestamp="1587578010571">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="581" y="188" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1587578010571" />
+    <state x="634" y="353" key="NewPhpFileDialog" timestamp="1587549863247">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="634" y="353" key="NewPhpFileDialog/0.0.1600.860@0.0.1600.860" timestamp="1587549863247" />
+    <state x="301" y="74" key="SettingsEditor" timestamp="1587468131411">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="301" y="74" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1587468131411" />
+    <state x="392" y="166" key="Vcs.Push.Dialog.v2" timestamp="1587906001729">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="392" y="166" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1587906001729" />
+    <state x="101" y="112" width="1400" height="660" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586964473374">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="101" y="112" width="1400" height="660" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1600.860@0.0.1600.860" timestamp="1586964473374" />
+    <state x="508" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1586247456279">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="508" y="257" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1586247456279" />
+    <state x="609" y="343" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587484838064">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="609" y="343" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1587484838064" />
+    <state x="507" y="186" width="586" height="530" key="find.popup" timestamp="1587453717950">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="507" y="186" width="586" height="530" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1587453717950" />
+    <state x="456" y="197" key="run.anything.popup" timestamp="1587645825194">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="456" y="197" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1587645825194" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/query.php</url>
+          <line>111</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
