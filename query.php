@@ -56,11 +56,42 @@ foreach ($request_text as $key => $value) {
                     unset($request_text[$key][array_search($item, $value)]);
                 }
             }
-            var_dump($request_text);
             $request_text[$key] = implode('%2C', $request_text[$key]);
-            var_dump($request_text[$key]);
+        }
+        if ($key == 'specialization') {
+            $a = [];
+            foreach ($value as $item) {
+                if (strpos($item, '.')) {
+                    $b = explode('.', $item);
+                    array_push($a, $b[0]);
+                }
+            }
+            foreach ($a as $item) {
+                if (array_search($item, $value) !== false) {
+                    unset($request_text[$key][array_search($item, $value)]);
+                }
+            }
+            $temp = $value[0];
+            foreach ($request_text[$key] as $index => $item) {
+                if ($index != 0) {
+                    $temp .= '&specialization=' . $item;
+                }
+            }
+            $request_text[$key] = $temp;
+        }
+        if ($key == 'area') {
+            $temp = $value[0];
+            foreach ($value as $index => $item) {
+                if ($index != 0) {
+                    $temp .= '&area=' . $item;
+                }
+            }
+            $request_text[$key] = $temp;
         }
     }
+}
+if (!array_key_exists('exp_industry', $request_text)) {
+    $request_text['exp_industry'] = 'any';
 }
 
 $request_url = 'https://hh.ru/search/resume?';
@@ -69,7 +100,7 @@ foreach ($request_text as $key=>$value) {
     $request_url .= $key . '=' . $value . '&';
 }
 
-$request_url = $request_url . 'area=1&items_on_page=100';
+$request_url = $request_url . 'items_on_page=100';
 
 $request_text = json_encode($request_text);
 
@@ -104,7 +135,7 @@ $params['id_bot']=1;
 $fld=date('Y-m-d-H-i-s');
 mkdir('files/query/'.$fld,  0777, true);
 $dir = 'files/query/'.$fld;
-
+//var_dump($request_url);exit();
 $z = new SeleniumBot($params);
 $fn=$z->hh_query($request_url, $fld, $dir, $new_id);
 //$fn='files/query/2020-04-23-15-06-46/hh_query_1.txt';
