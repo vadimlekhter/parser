@@ -35,13 +35,13 @@ foreach ($request_text as $key => $value) {
             $request_text[$key] = implode('%2C', $request_text[$key]);
         }
         if ($key == 'label') {
-            $temp = $value[0];
+            $label = $value[0];
             foreach ($value as $index => $item) {
                 if ($index != 0) {
-                    $temp .= '&label=' . $item;
+                    $label .= '&label=' . $item;
                 }
             }
-            $request_text[$key] = $temp;
+            $request_text[$key] = $label;
         }
         if ($key == 'exp_industry') {
             $a = [];
@@ -71,22 +71,38 @@ foreach ($request_text as $key => $value) {
                     unset($request_text[$key][array_search($item, $value)]);
                 }
             }
-            $temp = $value[0];
+            $spec = $value[0];
             foreach ($request_text[$key] as $index => $item) {
                 if ($index != 0) {
-                    $temp .= '&specialization=' . $item;
+                    $spec .= '&specialization=' . $item;
                 }
             }
-            $request_text[$key] = $temp;
+            $request_text[$key] = $spec;
         }
         if ($key == 'area') {
-            $temp = $value[0];
+            $area = $value[0];
             foreach ($value as $index => $item) {
                 if ($index != 0) {
-                    $temp .= '&area=' . $item;
+                    $area .= '&area=' . $item;
                 }
             }
-            $request_text[$key] = $temp;
+            $request_text[$key] = $area;
+        }
+        if ($key == 'language') {
+            foreach ($value as $ke => $item) {
+                foreach ($item as $k => $v) {
+                    if ($v == 'does_not_matter') {
+                        unset($request_text['language'][$ke]);
+                    }
+                }
+            }
+            $lang = '';
+            foreach ($request_text[$key] as $item) {
+                $lang .= 'language=' . $item[0] . '.' . $item[1] . '&';
+            }
+            $lang = substr_replace($lang, null, 0, 9);
+            $lang = substr($lang,0,-1);
+            $request_text[$key] = $lang;
         }
     }
 }
