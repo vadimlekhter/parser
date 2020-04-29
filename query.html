@@ -9,6 +9,9 @@
 <script src="js/pos.js"></script>
 <script src="js/specialization.js"></script>
 <script src="js/area.js"></script>
+<script src="js/metro.js"></script>
+<script src="js/citizen.js"></script>
+<script src="js/work.js"></script>
 <style>
     .big-font {
         font-size: large;
@@ -11831,7 +11834,7 @@
                 <div class="Bloko-TreeSelector-SearchContent bloko-form-item">
                     <div class="bloko-tree-selector-content Bloko-TreeSelector-Action">
                         <label class="bloko-checkbox">
-                            <input class="bloko-checkbox__input Bloko-TreeSelector-Input" name="area[]" value="1"
+                            <input class="moscow" class="bloko-checkbox__input Bloko-TreeSelector-Input" name="area[]" value="1"
                                    data-qa="bloko-tree-selector-input" autocomplete="off" type="checkbox">
                             <span class="bloko-checkbox__text" data-qa="bloko-tree-selector-item-text">Москва
 </span>
@@ -12240,7 +12243,7 @@
                 <div class="Bloko-TreeSelector-SearchContent bloko-form-item">
                     <div class="bloko-tree-selector-content Bloko-TreeSelector-Action">
                         <label class="bloko-checkbox">
-                            <input class="bloko-checkbox__input Bloko-TreeSelector-Input" name="area[]" value="2"
+                            <input class ="peterburg" class="bloko-checkbox__input Bloko-TreeSelector-Input" name="area[]" value="2"
                                    data-qa="bloko-tree-selector-input" autocomplete="off" type="checkbox">
                             <span class="bloko-checkbox__text" data-qa="bloko-tree-selector-item-text">Санкт-Петербург
 </span>
@@ -13220,6 +13223,14 @@
 
 <br><br>
 
+<div class="metro-div" style="display: none; margin-bottom: 30px">
+    <h4>Метро</h4>
+    <input id="metro-input" type="text" value="" autocomplete="off"
+           class="bloko-input HH-Metro-Input HH-MetroSelection-Input" data-qa="searchform__subway-input">
+</div>
+    <input id="metro" name="metro" type="hidden" value="">
+
+
     <select class="bloko-select HH-regions-form-selector" name="relocation">
         <option class="HH-RelocationSelector" value="living_or_relocation">Живут в указанном регионе или готовы переехать в него</option>
         <option class="HH-RelocationSelector" value="living">Живут в указанном регионе</option>
@@ -13235,6 +13246,11 @@
     <span>До </span>
     <input data-name="salary_to" name="salary_to" value="" class="Bloko-FormattedNumericInput-Hidden
     HH-Search-MoneyInput-Input">
+    <select name="currency_code" class="bloko-select  bloko-select_flexible HH-Search-MoneyInput-Currency"
+            data-qa="resumesearch__select-cur" data-name-from="salary_from" data-name-to="salary_to">
+        <option value="RUR" data-hh-template="%d руб." class="HH-Search-MoneyInput-Currency-Rate-1.000000" data-qa="currency-code-RUR">руб.</option>
+        <option value="USD" data-hh-template="$%d" class="HH-Search-MoneyInput-Currency-Rate-0.013410" data-qa="currency-code-USD">USD</option>
+        <option value="EUR" data-hh-template="€%d" class="HH-Search-MoneyInput-Currency-Rate-0.012380" data-qa="currency-code-EUR">EUR</option></select>
 
     <div style="margin-top: 30px">
         <input value="only_with_salary" name="label[]"
@@ -13245,18 +13261,26 @@
 
 
     <h4>Требуемый опыт работы</h4>
-    <span>Нет опыта </span>
+    <div>
     <input data-qa="resumesearch__experience-item resumesearch__experience-item_noExperience" type="checkbox"
            value="noExperience" name="experience" class="bloko-checkbox__input ">
-    <span>От 1 года до 3 лет </span>
+        <span>Нет опыта </span>
+    </div>
+    <div>
     <input data-qa="resumesearch__experience-item resumesearch__experience-item_between1And3" type="checkbox"
            value="between1And3" name="experience" class="bloko-checkbox__input ">
-    <span>От 3 до 6 лет</span>
+        <span>От 1 года до 3 лет </span>
+    </div>
+    <div>
     <input data-qa="resumesearch__experience-item resumesearch__experience-item_between3And6" type="checkbox"
            value="between3And6" name="experience" class="bloko-checkbox__input ">
-    <span>Более 6 лет </span>
+        <span>От 3 до 6 лет</span>
+    </div>
+    <div>
     <input data-qa="resumesearch__experience-item resumesearch__experience-item_moreThan6" type="checkbox"
            value="moreThan6" name="experience" class="bloko-checkbox__input ">
+        <span>Более 6 лет </span>
+    </div>
 
 
     <h4>Ключевые навыки</h4>
@@ -13280,6 +13304,20 @@
         <option value="secondary">Среднее</option>
         <option value="special_secondary">Среднее специальное</option>
     </select>
+
+    <div class="citizen-div" style="margin-bottom: 30px">
+        <h4>Гражданство</h4>
+        <input id="citizen-input" type="text" value="" autocomplete="off"
+               class="bloko-input HH-Metro-Input HH-MetroSelection-Input" data-qa="searchform__subway-input">
+    </div>
+    <input id="citizen" name="citizenship" type="hidden" value="">
+
+    <div class="work-div" style="margin-bottom: 30px">
+        <h4>Разрешение на работу</h4>
+        <input id="work-input" type="text" value="" autocomplete="off"
+               class="bloko-input HH-Metro-Input HH-MetroSelection-Input" data-qa="searchform__subway-input">
+    </div>
+    <input id="work" name="work_ticket" type="hidden" value="">
 
 
     <h4>Возраст и фотография</h4>
@@ -13306,51 +13344,77 @@
 
 
     <h4>Пол</h4>
-    <span>Не имеет значения </span>
+    <div>
     <input data-qa="resumesearch__gender-item resumesearch__gender-item_unknown" type="radio"
            value="unknown" name="gender" class="bloko-radio__input HH-GenderInputs-Field" checked="">
-    <span>Мужской </span>
+    <span>Не имеет значения </span>
+    </div>
+    <div>
     <input data-qa="resumesearch__gender-item resumesearch__gender-item_male" type="radio"
            value="male" name="gender" class="bloko-radio__input HH-GenderInputs-Field">
-    <span>Женский </span>
+    <span>Мужской </span>
+    </div>
+    <div>
     <input data-qa="resumesearch__gender-item resumesearch__gender-item_female" type="radio"
            value="female" name="gender" class="bloko-radio__input HH-GenderInputs-Field">
+    <span>Женский </span>
+    </div>
 
 
     <h4>Тип занятости</h4>
-    <span>Полная занятость </span>
+    <div>
     <input data-qa="resumesearch__employment-item resumesearch__employment-item_full" type="checkbox"
            value="full" name="employment" class="bloko-checkbox__input ">
-    <span>Частичная занятость </span>
+        <span>Полная занятость </span>
+    </div>
+    <div>
     <input data-qa="resumesearch__employment-item resumesearch__employment-item_part" type="checkbox"
            value="part" name="employment" class="bloko-checkbox__input ">
-    <span>Проектная/Временная работа </span>
+        <span>Частичная занятость </span>
+    </div>
+    <div>
     <input data-qa="resumesearch__employment-item resumesearch__employment-item_project" type="checkbox"
            value="project" name="employment" class="bloko-checkbox__input ">
-    <span>Волонтерство </span>
+        <span>Проектная/Временная работа </span>
+    </div>
+    <div>
     <input data-qa="resumesearch__employment-item resumesearch__employment-item_volunteer" type="checkbox"
            value="volunteer" name="employment" class="bloko-checkbox__input ">
-    <span>Стажировка </span>
+        <span>Волонтерство </span>
+    </div>
+    <div>
     <input data-qa="resumesearch__employment-item resumesearch__employment-item_probation" type="checkbox"
            value="probation" name="employment" class="bloko-checkbox__input ">
+        <span>Стажировка </span>
+    </div>
 
 
     <h4>График работы</h4>
-    <span>Полный день </span>
+    <div>
     <input data-qa="resumesearch__schedule-item resumesearch__schedule-item_fullDay" type="checkbox"
            value="fullDay" name="schedule" class="bloko-checkbox__input ">
-    <span>Сменный график </span>
+        <span>Полный день </span>
+    </div>
+    <div>
     <input data-qa="resumesearch__schedule-item resumesearch__schedule-item_shift" type="checkbox"
            value="shift" name="schedule" class="bloko-checkbox__input ">
-    <span>Гибкий график </span>
+        <span>Сменный график </span>
+    </div>
+    <div>
     <input data-qa="resumesearch__schedule-item resumesearch__schedule-item_flexible" type="checkbox"
            value="flexible" name="schedule" class="bloko-checkbox__input ">
-    <span>Удаленная работа </span>
+        <span>Гибкий график </span>
+    </div>
+    <div>
     <input data-qa="resumesearch__schedule-item resumesearch__schedule-item_remote" type="checkbox"
            value="remote" name="schedule" class="bloko-checkbox__input ">
-    <span>Вахтовый метод </span>
+        <span>Удаленная работа </span>
+    </div>
+    <div>
     <input data-qa="resumesearch__schedule-item resumesearch__schedule-item_flyInFlyOut" type="checkbox"
            value="flyInFlyOut" name="schedule" class="bloko-checkbox__input ">
+        <span>Вахтовый метод </span>
+    </div>
 
 
     <h4>Личный автомобиль</h4>
@@ -13392,132 +13456,238 @@
 
 
     <h4>Знание языков</h4>
-        <select class="bloko-select
+    <div style="margin-bottom: 30px">
+    <select class="bloko-select
         HH-LanguageSelect-Select" data-qa="resumesearch__select-language-name" name="language[1][]">
-            <option value="eng">Английский</option><option value="deu">Немецкий</option>
-            <option value="fra">Французский</option><option value="" disabled=""></option>
-            <option value="abq">Абазинский</option><option value="abk">Абхазский</option>
-            <option value="ava">Аварский</option><option value="aze">Азербайджанский</option>
-            <option value="sqi">Албанский</option><option value="amh">Амхарский</option>
-            <option value="ara">Арабский</option><option value="hye">Армянский</option>
-            <option value="afr">Африкаанс</option><option value="eus">Баскский</option>
-            <option value="bak">Башкирский</option><option value="bel">Белорусский</option>
-            <option value="ben">Бенгальский</option><option value="mya">Бирманский</option>
-            <option value="bul">Болгарский</option><option value="bos">Боснийский</option>
-            <option value="bua">Бурятский</option><option value="hun">Венгерский</option>
-            <option value="vie">Вьетнамский</option><option value="nld">Голландский</option>
-            <option value="ell">Греческий</option><option value="kat">Грузинский</option>
-            <option value="dag">Дагестанский</option><option value="dar">Даргинский</option>
-            <option value="dan">Датский</option><option value="heb">Иврит</option>
-            <option value="inh">Ингушский</option><option value="ind">Индонезийский</option>
-            <option value="gle">Ирландский</option><option value="isl">Исландский</option>
-            <option value="spa">Испанский</option><option value="ita">Итальянский</option>
-            <option value="kbd">Кабардино-черкесский</option><option value="kaz">Казахский</option>
-            <option value="krc">Карачаево-балкарский</option><option value="krl">Карельский</option>
-            <option value="cat">Каталанский</option><option value="kas">Кашмирский</option>
-            <option value="zho">Китайский</option><option value="kom">Коми</option>
-            <option value="kor">Корейский</option><option value="crs">Креольский (Сейшельские острова)</option>
-            <option value="kum">Кумыкский</option><option value="kur">Курдский</option>
-            <option value="khm">Кхмерский (Камбоджийский)</option><option value="kir">Кыргызский</option>
-            <option value="lbe">Лакский</option><option value="lao">Лаосский</option>
-            <option value="lat">Латинский</option><option value="lav">Латышский</option>
-            <option value="lez">Лезгинский</option><option value="lit">Литовский</option>
-            <option value="mke">Македонский</option><option value="zlm">Малазийский</option>
-            <option value="mns">Мансийский</option><option value="chm">Марийский</option>
-            <option value="mon">Монгольский</option><option value="nep">Непальский</option>
-            <option value="nog">Ногайский</option><option value="nor">Норвежский</option>
-            <option value="oss">Осетинский</option><option value="pan">Панджаби</option>
-            <option value="fas">Персидский</option><option value="pol">Польский</option>
-            <option value="por">Португальский</option><option value="pus">Пушту</option>
-            <option value="ron">Румынский</option><option value="rus">Русский</option>
-            <option value="san">Санскрит</option><option value="srp">Сербский</option>
-            <option value="slk">Словацкий</option><option value="slv">Словенский</option>
-            <option value="som">Сомалийский</option><option value="swa">Суахили</option>
-            <option value="tgl">Тагальский</option><option value="tgk">Таджикский</option>
-            <option value="tha">Тайский</option><option value="tly">Талышский</option>
-            <option value="tam">Тамильский</option><option value="tat">Татарский</option>
-            <option value="bod">Тибетский</option><option value="tyv">Тувинский</option>
-            <option value="tur">Турецкий</option><option value="tuk">Туркменский</option>
-            <option value="udm">Удмуртский</option><option value="uzb">Узбекский</option>
-            <option value="uig">Уйгурский</option><option value="ukr">Украинский</option>
-            <option value="urd">Урду</option><option value="fin">Финский</option>
-            <option value="vls">Фламандский</option><option value="hin">Хинди</option>
-            <option value="hrv">Хорватский</option><option value="che">Чеченский</option>
-            <option value="ces">Чешский</option><option value="chv">Чувашский</option>
-            <option value="swe">Шведский</option><option value="epo">Эсперанто</option>
-            <option value="est">Эстонский</option><option value="sah">Якутский</option>
-            <option value="jpn">Японский</option></select>
-
-
-
-        <select class="bloko-select
-        HH-LanguageSelect-DegreeSelect" data-qa="resumesearch__select-language-level" name="language[1][]">
-            <option value="does_not_matter">Не имеет значения</option>
-            <option value="a1">A1 — Начальный</option>
-            <option value="a2">A2 — Элементарный</option>
-            <option value="b1">B1 — Средний</option>
-            <option value="b2">B2 — Средне-продвинутый</option>
-            <option value="c1">C1 — Продвинутый</option>
-            <option value="c2">C2 — В совершенстве</option>
-            <option value="l1">Родной</option></select>
+        <option value="eng">Английский</option>
+        <option value="deu">Немецкий</option>
+        <option value="fra">Французский</option>
+        <option value="" disabled=""></option>
+        <option value="abq">Абазинский</option>
+        <option value="abk">Абхазский</option>
+        <option value="ava">Аварский</option>
+        <option value="aze">Азербайджанский</option>
+        <option value="sqi">Албанский</option>
+        <option value="amh">Амхарский</option>
+        <option value="ara">Арабский</option>
+        <option value="hye">Армянский</option>
+        <option value="afr">Африкаанс</option>
+        <option value="eus">Баскский</option>
+        <option value="bak">Башкирский</option>
+        <option value="bel">Белорусский</option>
+        <option value="ben">Бенгальский</option>
+        <option value="mya">Бирманский</option>
+        <option value="bul">Болгарский</option>
+        <option value="bos">Боснийский</option>
+        <option value="bua">Бурятский</option>
+        <option value="hun">Венгерский</option>
+        <option value="vie">Вьетнамский</option>
+        <option value="nld">Голландский</option>
+        <option value="ell">Греческий</option>
+        <option value="kat">Грузинский</option>
+        <option value="dag">Дагестанский</option>
+        <option value="dar">Даргинский</option>
+        <option value="dan">Датский</option>
+        <option value="heb">Иврит</option>
+        <option value="inh">Ингушский</option>
+        <option value="ind">Индонезийский</option>
+        <option value="gle">Ирландский</option>
+        <option value="isl">Исландский</option>
+        <option value="spa">Испанский</option>
+        <option value="ita">Итальянский</option>
+        <option value="kbd">Кабардино-черкесский</option>
+        <option value="kaz">Казахский</option>
+        <option value="krc">Карачаево-балкарский</option>
+        <option value="krl">Карельский</option>
+        <option value="cat">Каталанский</option>
+        <option value="kas">Кашмирский</option>
+        <option value="zho">Китайский</option>
+        <option value="kom">Коми</option>
+        <option value="kor">Корейский</option>
+        <option value="crs">Креольский (Сейшельские острова)</option>
+        <option value="kum">Кумыкский</option>
+        <option value="kur">Курдский</option>
+        <option value="khm">Кхмерский (Камбоджийский)</option>
+        <option value="kir">Кыргызский</option>
+        <option value="lbe">Лакский</option>
+        <option value="lao">Лаосский</option>
+        <option value="lat">Латинский</option>
+        <option value="lav">Латышский</option>
+        <option value="lez">Лезгинский</option>
+        <option value="lit">Литовский</option>
+        <option value="mke">Македонский</option>
+        <option value="zlm">Малазийский</option>
+        <option value="mns">Мансийский</option>
+        <option value="chm">Марийский</option>
+        <option value="mon">Монгольский</option>
+        <option value="nep">Непальский</option>
+        <option value="nog">Ногайский</option>
+        <option value="nor">Норвежский</option>
+        <option value="oss">Осетинский</option>
+        <option value="pan">Панджаби</option>
+        <option value="fas">Персидский</option>
+        <option value="pol">Польский</option>
+        <option value="por">Португальский</option>
+        <option value="pus">Пушту</option>
+        <option value="ron">Румынский</option>
+        <option value="rus">Русский</option>
+        <option value="san">Санскрит</option>
+        <option value="srp">Сербский</option>
+        <option value="slk">Словацкий</option>
+        <option value="slv">Словенский</option>
+        <option value="som">Сомалийский</option>
+        <option value="swa">Суахили</option>
+        <option value="tgl">Тагальский</option>
+        <option value="tgk">Таджикский</option>
+        <option value="tha">Тайский</option>
+        <option value="tly">Талышский</option>
+        <option value="tam">Тамильский</option>
+        <option value="tat">Татарский</option>
+        <option value="bod">Тибетский</option>
+        <option value="tyv">Тувинский</option>
+        <option value="tur">Турецкий</option>
+        <option value="tuk">Туркменский</option>
+        <option value="udm">Удмуртский</option>
+        <option value="uzb">Узбекский</option>
+        <option value="uig">Уйгурский</option>
+        <option value="ukr">Украинский</option>
+        <option value="urd">Урду</option>
+        <option value="fin">Финский</option>
+        <option value="vls">Фламандский</option>
+        <option value="hin">Хинди</option>
+        <option value="hrv">Хорватский</option>
+        <option value="che">Чеченский</option>
+        <option value="ces">Чешский</option>
+        <option value="chv">Чувашский</option>
+        <option value="swe">Шведский</option>
+        <option value="epo">Эсперанто</option>
+        <option value="est">Эстонский</option>
+        <option value="sah">Якутский</option>
+        <option value="jpn">Японский</option>
+    </select>
 
     <select class="bloko-select
+        HH-LanguageSelect-DegreeSelect" data-qa="resumesearch__select-language-level" name="language[1][]">
+        <option value="does_not_matter">Не имеет значения</option>
+        <option value="a1">A1 — Начальный</option>
+        <option value="a2">A2 — Элементарный</option>
+        <option value="b1">B1 — Средний</option>
+        <option value="b2">B2 — Средне-продвинутый</option>
+        <option value="c1">C1 — Продвинутый</option>
+        <option value="c2">C2 — В совершенстве</option>
+        <option value="l1">Родной</option>
+    </select>
+    </div>
+
+    <div style="margin-bottom: 30px">
+    <select class="bloko-select
         HH-LanguageSelect-Select" data-qa="resumesearch__select-language-name" name="language[2][]">
-        <option value="eng">Английский</option><option value="deu">Немецкий</option>
-        <option value="fra">Французский</option><option value="" disabled=""></option>
-        <option value="abq">Абазинский</option><option value="abk">Абхазский</option>
-        <option value="ava">Аварский</option><option value="aze">Азербайджанский</option>
-        <option value="sqi">Албанский</option><option value="amh">Амхарский</option>
-        <option value="ara">Арабский</option><option value="hye">Армянский</option>
-        <option value="afr">Африкаанс</option><option value="eus">Баскский</option>
-        <option value="bak">Башкирский</option><option value="bel">Белорусский</option>
-        <option value="ben">Бенгальский</option><option value="mya">Бирманский</option>
-        <option value="bul">Болгарский</option><option value="bos">Боснийский</option>
-        <option value="bua">Бурятский</option><option value="hun">Венгерский</option>
-        <option value="vie">Вьетнамский</option><option value="nld">Голландский</option>
-        <option value="ell">Греческий</option><option value="kat">Грузинский</option>
-        <option value="dag">Дагестанский</option><option value="dar">Даргинский</option>
-        <option value="dan">Датский</option><option value="heb">Иврит</option>
-        <option value="inh">Ингушский</option><option value="ind">Индонезийский</option>
-        <option value="gle">Ирландский</option><option value="isl">Исландский</option>
-        <option value="spa">Испанский</option><option value="ita">Итальянский</option>
-        <option value="kbd">Кабардино-черкесский</option><option value="kaz">Казахский</option>
-        <option value="krc">Карачаево-балкарский</option><option value="krl">Карельский</option>
-        <option value="cat">Каталанский</option><option value="kas">Кашмирский</option>
-        <option value="zho">Китайский</option><option value="kom">Коми</option>
-        <option value="kor">Корейский</option><option value="crs">Креольский (Сейшельские острова)</option>
-        <option value="kum">Кумыкский</option><option value="kur">Курдский</option>
-        <option value="khm">Кхмерский (Камбоджийский)</option><option value="kir">Кыргызский</option>
-        <option value="lbe">Лакский</option><option value="lao">Лаосский</option>
-        <option value="lat">Латинский</option><option value="lav">Латышский</option>
-        <option value="lez">Лезгинский</option><option value="lit">Литовский</option>
-        <option value="mke">Македонский</option><option value="zlm">Малазийский</option>
-        <option value="mns">Мансийский</option><option value="chm">Марийский</option>
-        <option value="mon">Монгольский</option><option value="nep">Непальский</option>
-        <option value="nog">Ногайский</option><option value="nor">Норвежский</option>
-        <option value="oss">Осетинский</option><option value="pan">Панджаби</option>
-        <option value="fas">Персидский</option><option value="pol">Польский</option>
-        <option value="por">Португальский</option><option value="pus">Пушту</option>
-        <option value="ron">Румынский</option><option value="rus">Русский</option>
-        <option value="san">Санскрит</option><option value="srp">Сербский</option>
-        <option value="slk">Словацкий</option><option value="slv">Словенский</option>
-        <option value="som">Сомалийский</option><option value="swa">Суахили</option>
-        <option value="tgl">Тагальский</option><option value="tgk">Таджикский</option>
-        <option value="tha">Тайский</option><option value="tly">Талышский</option>
-        <option value="tam">Тамильский</option><option value="tat">Татарский</option>
-        <option value="bod">Тибетский</option><option value="tyv">Тувинский</option>
-        <option value="tur">Турецкий</option><option value="tuk">Туркменский</option>
-        <option value="udm">Удмуртский</option><option value="uzb">Узбекский</option>
-        <option value="uig">Уйгурский</option><option value="ukr">Украинский</option>
-        <option value="urd">Урду</option><option value="fin">Финский</option>
-        <option value="vls">Фламандский</option><option value="hin">Хинди</option>
-        <option value="hrv">Хорватский</option><option value="che">Чеченский</option>
-        <option value="ces">Чешский</option><option value="chv">Чувашский</option>
-        <option value="swe">Шведский</option><option value="epo">Эсперанто</option>
-        <option value="est">Эстонский</option><option value="sah">Якутский</option>
-        <option value="jpn">Японский</option></select>
-
-
+        <option value="eng">Английский</option>
+        <option value="deu">Немецкий</option>
+        <option value="fra">Французский</option>
+        <option value="" disabled=""></option>
+        <option value="abq">Абазинский</option>
+        <option value="abk">Абхазский</option>
+        <option value="ava">Аварский</option>
+        <option value="aze">Азербайджанский</option>
+        <option value="sqi">Албанский</option>
+        <option value="amh">Амхарский</option>
+        <option value="ara">Арабский</option>
+        <option value="hye">Армянский</option>
+        <option value="afr">Африкаанс</option>
+        <option value="eus">Баскский</option>
+        <option value="bak">Башкирский</option>
+        <option value="bel">Белорусский</option>
+        <option value="ben">Бенгальский</option>
+        <option value="mya">Бирманский</option>
+        <option value="bul">Болгарский</option>
+        <option value="bos">Боснийский</option>
+        <option value="bua">Бурятский</option>
+        <option value="hun">Венгерский</option>
+        <option value="vie">Вьетнамский</option>
+        <option value="nld">Голландский</option>
+        <option value="ell">Греческий</option>
+        <option value="kat">Грузинский</option>
+        <option value="dag">Дагестанский</option>
+        <option value="dar">Даргинский</option>
+        <option value="dan">Датский</option>
+        <option value="heb">Иврит</option>
+        <option value="inh">Ингушский</option>
+        <option value="ind">Индонезийский</option>
+        <option value="gle">Ирландский</option>
+        <option value="isl">Исландский</option>
+        <option value="spa">Испанский</option>
+        <option value="ita">Итальянский</option>
+        <option value="kbd">Кабардино-черкесский</option>
+        <option value="kaz">Казахский</option>
+        <option value="krc">Карачаево-балкарский</option>
+        <option value="krl">Карельский</option>
+        <option value="cat">Каталанский</option>
+        <option value="kas">Кашмирский</option>
+        <option value="zho">Китайский</option>
+        <option value="kom">Коми</option>
+        <option value="kor">Корейский</option>
+        <option value="crs">Креольский (Сейшельские острова)</option>
+        <option value="kum">Кумыкский</option>
+        <option value="kur">Курдский</option>
+        <option value="khm">Кхмерский (Камбоджийский)</option>
+        <option value="kir">Кыргызский</option>
+        <option value="lbe">Лакский</option>
+        <option value="lao">Лаосский</option>
+        <option value="lat">Латинский</option>
+        <option value="lav">Латышский</option>
+        <option value="lez">Лезгинский</option>
+        <option value="lit">Литовский</option>
+        <option value="mke">Македонский</option>
+        <option value="zlm">Малазийский</option>
+        <option value="mns">Мансийский</option>
+        <option value="chm">Марийский</option>
+        <option value="mon">Монгольский</option>
+        <option value="nep">Непальский</option>
+        <option value="nog">Ногайский</option>
+        <option value="nor">Норвежский</option>
+        <option value="oss">Осетинский</option>
+        <option value="pan">Панджаби</option>
+        <option value="fas">Персидский</option>
+        <option value="pol">Польский</option>
+        <option value="por">Португальский</option>
+        <option value="pus">Пушту</option>
+        <option value="ron">Румынский</option>
+        <option value="rus">Русский</option>
+        <option value="san">Санскрит</option>
+        <option value="srp">Сербский</option>
+        <option value="slk">Словацкий</option>
+        <option value="slv">Словенский</option>
+        <option value="som">Сомалийский</option>
+        <option value="swa">Суахили</option>
+        <option value="tgl">Тагальский</option>
+        <option value="tgk">Таджикский</option>
+        <option value="tha">Тайский</option>
+        <option value="tly">Талышский</option>
+        <option value="tam">Тамильский</option>
+        <option value="tat">Татарский</option>
+        <option value="bod">Тибетский</option>
+        <option value="tyv">Тувинский</option>
+        <option value="tur">Турецкий</option>
+        <option value="tuk">Туркменский</option>
+        <option value="udm">Удмуртский</option>
+        <option value="uzb">Узбекский</option>
+        <option value="uig">Уйгурский</option>
+        <option value="ukr">Украинский</option>
+        <option value="urd">Урду</option>
+        <option value="fin">Финский</option>
+        <option value="vls">Фламандский</option>
+        <option value="hin">Хинди</option>
+        <option value="hrv">Хорватский</option>
+        <option value="che">Чеченский</option>
+        <option value="ces">Чешский</option>
+        <option value="chv">Чувашский</option>
+        <option value="swe">Шведский</option>
+        <option value="epo">Эсперанто</option>
+        <option value="est">Эстонский</option>
+        <option value="sah">Якутский</option>
+        <option value="jpn">Японский</option>
+    </select>
 
     <select class="bloko-select
         HH-LanguageSelect-DegreeSelect" data-qa="resumesearch__select-language-level" name="language[2][]">
@@ -13529,7 +13699,9 @@
         <option value="c1">C1 — Продвинутый</option>
         <option value="c2">C2 — В совершенстве</option>
         <option value="l1">Родной</option></select>
+    </div>
 
+    <div style="margin-bottom: 30px">
     <select class="bloko-select
         HH-LanguageSelect-Select" data-qa="resumesearch__select-language-name" name="language[3][]">
         <option value="eng">Английский</option><option value="deu">Немецкий</option>
@@ -13586,8 +13758,6 @@
         <option value="est">Эстонский</option><option value="sah">Якутский</option>
         <option value="jpn">Японский</option></select>
 
-
-
     <select class="bloko-select
         HH-LanguageSelect-DegreeSelect" data-qa="resumesearch__select-language-level" name="language[3][]">
         <option value="does_not_matter">Не имеет значения</option>
@@ -13598,9 +13768,8 @@
         <option value="c1">C1 — Продвинутый</option>
         <option value="c2">C2 — В совершенстве</option>
         <option value="l1">Родной</option></select>
+    </div>
 
-
-    <!--    <input type="hidden" name="language" class="HH-LanguageSelect-Value" value="eng.does_not_matter" >-->
 
     <h4>Период поиска</h4>
     <div class="bloko-form-item-baseline">
@@ -13644,79 +13813,6 @@
             <span class="bloko-radio__text">За год</span>
         </label>
     </div>
-<!--    <div class="bloko-form-item-baseline">-->
-<!--        <label class="bloko-radio" data-qa="control-vacancysearch__searchperiod-item control-vacancysearch__searchperiod-item_-1">-->
-<!--            <input data-qa="vacancysearch__searchperiod-item vacancysearch__searchperiod-item_-1" type="radio" value="-1"-->
-<!--                   name="search_period" class="bloko-radio__input HH-SearchDateIntervals-Select HH-SearchDateIntervals-Select-Custom">-->
-<!--            <span class="bloko-radio__text">За интервал</span>-->
-<!--        </label>-->
-<!--    </div>-->
-
-
-
-<!--    <div class="HH-SearchDateIntervals-Dates g-hidden"><span style="display: inline-block"><script data-name="HH/Bloko/Calendar/Input" data-params="-->
-<!--                {-->
-
-<!--        &quot;translations&quot;: {-->
-<!--            &quot;weekdays&quot;: [-->
-<!--                &quot;пн&quot;,-->
-<!--                &quot;вт&quot;,-->
-<!--                &quot;ср&quot;,-->
-<!--                &quot;чт&quot;,-->
-<!--                &quot;пт&quot;,-->
-<!--                &quot;сб&quot;,-->
-<!--                &quot;вс&quot;-->
-<!--            ],-->
-<!--            &quot;months&quot;: [-->
-<!--                &quot;Январь&quot;,-->
-<!--                &quot;Февраль&quot;,-->
-<!--                &quot;Март&quot;,-->
-<!--                &quot;Апрель&quot;,-->
-<!--                &quot;Май&quot;,-->
-<!--                &quot;Июнь&quot;,-->
-<!--                &quot;Июль&quot;,-->
-<!--                &quot;Август&quot;,-->
-<!--                &quot;Сентябрь&quot;,-->
-<!--                &quot;Октябрь&quot;,-->
-<!--                &quot;Ноябрь&quot;,-->
-<!--                &quot;Декабрь&quot;-->
-<!--            ]-->
-<!--        }-->
-<!--    ,&quot;selectedDate&quot;: &quot;&#45;&#45;&quot;-->
-<!--                }-->
-<!--            "></script><span class="bloko-link-switch HH-BlokoCalendar-Trigger" data-attach="dropdown-trigger">24 апреля 2020</span><input type="hidden" name="date_from" class="HH-BlokoCalendar-Input HH-SearchDateIntervals-Input" disabled="" value="24.04.2020"></span><span>&nbsp;—&nbsp;</span><span style="display: inline-block"><script data-name="HH/Bloko/Calendar/Input" data-params="-->
-<!--                {-->
-
-<!--        &quot;translations&quot;: {-->
-<!--            &quot;weekdays&quot;: [-->
-<!--                &quot;пн&quot;,-->
-<!--                &quot;вт&quot;,-->
-<!--                &quot;ср&quot;,-->
-<!--                &quot;чт&quot;,-->
-<!--                &quot;пт&quot;,-->
-<!--                &quot;сб&quot;,-->
-<!--                &quot;вс&quot;-->
-<!--            ],-->
-<!--            &quot;months&quot;: [-->
-<!--                &quot;Январь&quot;,-->
-<!--                &quot;Февраль&quot;,-->
-<!--                &quot;Март&quot;,-->
-<!--                &quot;Апрель&quot;,-->
-<!--                &quot;Май&quot;,-->
-<!--                &quot;Июнь&quot;,-->
-<!--                &quot;Июль&quot;,-->
-<!--                &quot;Август&quot;,-->
-<!--                &quot;Сентябрь&quot;,-->
-<!--                &quot;Октябрь&quot;,-->
-<!--                &quot;Ноябрь&quot;,-->
-<!--                &quot;Декабрь&quot;-->
-<!--            ]-->
-<!--        }-->
-<!--    ,&quot;selectedDate&quot;: &quot;&#45;&#45;&quot;-->
-<!--                }-->
-<!--            "></script><span class="bloko-link-switch HH-BlokoCalendar-Trigger" data-attach="dropdown-trigger">24 апреля 2020</span><input type="hidden" name="date_to" class="HH-BlokoCalendar-Input HH-SearchDateIntervals-Input" disabled="" value="24.04.2020"></span></div>-->
-
-
 
 
     <p><input type="submit" class="bloko-button bloko-button_large bloko-button_primary bloko-button_stretched"

@@ -17,6 +17,7 @@ $pass = getenv('DB_PASS');
 $charset = getenv('DB_CHARSET');
 
 $request_text = $_REQUEST;
+
 foreach ($request_text as $key => $value) {
     if ($value == '') {
         unset($request_text[$key]);
@@ -103,13 +104,16 @@ foreach ($request_text as $key => $value) {
             $lang = substr_replace($lang, null, 0, 9);
             $lang = substr($lang,0,-1);
             $request_text[$key] = $lang;
+            if ($request_text[$key] == '') {
+                unset($request_text[$key]);
+            }
         }
     }
 }
 if (!array_key_exists('exp_industry', $request_text)) {
     $request_text['exp_industry'] = 'any';
 }
-
+var_dump($request_text);exit();
 $request_url = 'https://hh.ru/search/resume?';
 
 foreach ($request_text as $key=>$value) {
