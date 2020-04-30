@@ -113,7 +113,7 @@ foreach ($request_text as $key => $value) {
 if (!array_key_exists('exp_industry', $request_text)) {
     $request_text['exp_industry'] = 'any';
 }
-var_dump($request_text);exit();
+
 $request_url = 'https://hh.ru/search/resume?';
 
 foreach ($request_text as $key=>$value) {

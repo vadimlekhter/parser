@@ -12,6 +12,7 @@
 <script src="js/metro.js"></script>
 <script src="js/citizen.js"></script>
 <script src="js/work.js"></script>
+<script src="js/university.js"></script>
 <style>
     .big-font {
         font-size: large;
@@ -13305,6 +13306,19 @@
         <option value="special_secondary">Среднее специальное</option>
     </select>
 
+    <div class="university-div" style="margin-bottom: 30px">
+        <h4>Учебное заведение</h4>
+        <input id="university-input" type="text" value="" autocomplete="off"
+               class="bloko-input HH-Metro-Input HH-MetroSelection-Input" data-qa="searchform__subway-input">
+    </div>
+    <input id="university" name="university" type="hidden" value="">
+
+
+
+
+
+
+
     <div class="citizen-div" style="margin-bottom: 30px">
         <h4>Гражданство</h4>
         <input id="citizen-input" type="text" value="" autocomplete="off"
@@ -13813,7 +13827,6 @@
             <span class="bloko-radio__text">За год</span>
         </label>
     </div>
-
 
     <p><input type="submit" class="bloko-button bloko-button_large bloko-button_primary bloko-button_stretched"
               value="Найти" data-qa="resumes-search-submit">
